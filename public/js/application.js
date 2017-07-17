@@ -1,3 +1,22 @@
+
+var createPoll = function(pollType) {
+//Create a new Poll
+var newPollForm = $("<form id='newPollForm'>");
+var newPollQuestionFormGroup = $("<div class='form-group'> ")
+var newPollLabel = $("<label for='pollQuestion'>Enter Poll Question:</label>").appendTo(newPollQuestionFormGroup);
+var newPollQuestion = $("<input type='text' class='form-control' id='pollQuestion'> </div>").appendTo(newPollQuestionFormGroup);
+
+var newPollSubmitButton = $("<input type='button' class='btn btn-primary' id='submitbutton' value='Submit Button'>");
+
+newPollForm.append(newPollQuestionFormGroup).append(newPollSubmitButton);
+
+//Add a data attribute that will be passed during service call.
+$(newPollForm).attr('data-polltype','yesOrNo')
+
+//Append the poll to main content area
+$("#mainContent").append(newPollForm);
+}
+
 $(document).ready(function(){
 
 /**
@@ -50,11 +69,9 @@ myNavBar.init(  [
  * of the scroll
  */
 function offSetManager(){
-  console.log('AHEM AHEM')
-    var yOffset = 0;
+      var yOffset = 0;
     var currYOffSet = window.pageYOffset;
-    console.log(currYOffSet + " OHO");
-    if(yOffset < currYOffSet) {
+      if(yOffset < currYOffSet) {
         myNavBar.add();
     }
     else if(currYOffSet == yOffset){
@@ -74,6 +91,10 @@ window.onscroll = offSetManager;
  */
 offSetManager();
 
-
+$(".createPollButton").click( function(){
+  //hide div's and create a poll
+  $('.profileContent').hide();
+  createPoll();
+});
 
 });
