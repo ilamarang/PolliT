@@ -1,5 +1,6 @@
 
 var createPoll = function(pollType) {
+
 //Create a new Poll
 var newPollForm = $("<form id='newPollForm'>");
 var newPollQuestionFormGroup = $("<div class='form-group'> ")
@@ -11,7 +12,7 @@ var newPollSubmitButton = $("<input type='button' class='btn btn-primary' id='su
 newPollForm.append(newPollQuestionFormGroup).append(newPollSubmitButton);
 
 //Add a data attribute that will be passed during service call.
-$(newPollForm).attr('data-polltype','yesOrNo')
+$(newPollForm).attr('data-polltype',pollType)
 
 //Append the poll to main content area
 $("#mainContent").append(newPollForm);
@@ -94,7 +95,7 @@ offSetManager();
 $(".createPollButton").click( function(){
   //hide div's and create a poll
   $('.profileContent').hide();
-  createPoll();
+  createPoll($(this).data('polltype'));
 });
 
 });

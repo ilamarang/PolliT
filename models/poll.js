@@ -10,7 +10,11 @@ module.exports = function(sequelize, DataTypes) {
     options: {
       type: DataTypes.TEXT
     }
-  },
+  ,
+  uuid: {
+    type: DataTypes.TEXT
+  }
+},
     {
       // We're saying that we want our Author to have Posts
       classMethods: {

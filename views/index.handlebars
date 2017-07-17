@@ -55,7 +55,7 @@
 
                 <div class="panel-body panel1">Choose Poll Template 1</div>
                 <div class='text-center'>
-                    <button id="yesNoPollButton" class="btn btn-primary createPollButton">Create a Poll</button>
+                    <button id="yesNoPollButton" data-polltype = "yesOrNo" class="btn btn-primary createPollButton">Create a Poll</button>
                 </div>
 
             </div>
@@ -65,7 +65,7 @@
 
                 <div class="panel-body panel2">Choose Poll Template 2</div>
                 <div class='text-center'>
-                    <button id="choicePollButton" class="btn btn-primary createPollButton">Create a Poll</button>
+                    <button id="choicePollButton" data-polltype = "multipleChoice" class="btn btn-primary createPollButton">Create a Poll</button>
                 </div>
             </div>
                </div>
@@ -75,7 +75,7 @@
                 <div class="panel-body panel3">Choose Poll Template 3</div>
 
                 <div class='text-center'>
-                    <button id="ratingsPollButton" class="btn btn-primary createPollButton">Create a Poll</button>
+                    <button id="ratingsPollButton" data-polltype = "points"  class="btn btn-primary createPollButton">Create a Poll</button>
                 </div>
 
             </div>
@@ -85,4 +85,32 @@
       </div>
    </div>
 </div>
+
+<!-- Modal -->
+  <div class="modal fade" id="pollResult" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Poll Created!</h4>
+        </div>
+        <div class="modalBody">
+          <p> Thanks for submitting your Poll</p>
+          <p>
+            Please share the following link to your users!
+            <h6 id='pollLink'></h6>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
 </div>

@@ -15,7 +15,7 @@ var db = require('./models');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var services = require('./routes/services');
-
+var poll = require('./routes/poll');
 // Init App
 var app = express();
 
@@ -78,6 +78,7 @@ app.use(function (req, res, next) {
 app.use('/', routes);
 app.use('/users', users);
 app.use('/services', services);
+app.use('/submitPoll', poll);
 // Set Port
 db.sequelize.sync({}).then(function() {
   app.listen(3000, function() {

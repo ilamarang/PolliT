@@ -26,6 +26,7 @@
     "passport": "*",
     "passport-http": "*",
     "passport-local": "*",
-    "sequelize": "^3.30.4"
+    "sequelize": "^3.30.4",
+    "uuid": "^3.1.0"
   }
 }
