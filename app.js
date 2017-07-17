@@ -20,9 +20,14 @@ var poll = require('./routes/poll');
 var app = express();
 
 // View Engine
+var handlebars  = require('./helpers/handlebars.js')(exphbs);
+
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs({defaultLayout:'layout'}));
+
+app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
+
+
 
 // BodyParser Middleware
 app.use(bodyParser.json());
