@@ -6,7 +6,7 @@ const uuid = require('uuid/v4');
 // Get Homepage
 router.post('/addPoll',function(req, res){
 	console.log(req.body);
-  var newPoll = {}
+  var newPoll = {};
   newPoll['UserId'] = req.user.id;
   newPoll['title'] = req.body.question;
   newPoll['TypeId'] = req.body.pollType;
@@ -20,5 +20,15 @@ router.post('/addPoll',function(req, res){
 
 });
 
-
+router.post('/submitPoll',function(req, res){
+var submitPoll = {};
+submitPoll['uuid'] = req.body.uuid;
+submitPoll['PollId'] = req.body.pollId;
+submitPoll['userEmail'] = req.body.email ;
+submitPoll['optionSelected'] = req.body.optionSelected;
+console.log(submitPoll)
+db.PollResult.create(submitPoll).then(function(resultSet) {
+	res.json(submitPoll);
+})
+});
 module.exports = router;

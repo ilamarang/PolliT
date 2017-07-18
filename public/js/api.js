@@ -25,3 +25,18 @@ $("#mainContent").on("click", "#submitbutton", function() {
   });
 
 })
+
+
+$("#submitPollButton").on("click",function() {
+var submitPollData = { };
+submitPollData['uuid'] = $("#submitPollForm").data("uuid");
+submitPollData['pollId'] = $("#submitPollForm").data("pollid");
+submitPollData['email'] = $("#pollSubmitEmail").val();
+submitPollData['optionSelected'] = $('#pollSelection :selected').text();
+$.post("/services/submitPoll",submitPollData).done(function(data){
+  $('#submitPollRow').hide();
+  var successMessage = $('<div class="center-text"><h1> Thank you! - Your choice has been successfully Registered! </h1></div>')
+  $('#submitPollContainer').append(successMessage);
+})
+
+})
