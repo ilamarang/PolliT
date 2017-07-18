@@ -174,3 +174,8 @@ footer {
 #ex1Slider .slider-selection {
 	background: #BABABA;
 }
+.pollChoice {
+          border-radius: 4px !important;
+          margin-bottom :1em;
+
+}
