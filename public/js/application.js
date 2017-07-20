@@ -80,6 +80,7 @@ var myNavBar = {
 
 };
 
+
 /**
  * Init the object. Pass the object the array of elements
  * that we want to change when the scroll goes down

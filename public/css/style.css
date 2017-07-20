@@ -1,21 +1,57 @@
 
-html,
+/* COLORS:
+
+light red - #B90504
+dark red - #990100
+dark gray - #333333
+light gray - #E8E8E8
+off white - #F6F6F6
+
+*/
+
+
 body {
-    overflow-x: hidden; /* Prevent scroll on narrow devices */
-}
-body {
-    padding-top: 100px;
-  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-}
-footer {
-    padding: 30px 0;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  width: 100%;
+  height: 100%;
+  font-family: 'Cabin', sans-serif;
+  background-image: url(/images/whirlpool.png);
 }
 
-/*
- * Custom styles
- */
+
+/* Nav section */
+
+.top-nav {
+  background-color: #990100;
+}
+
 .navbar-brand {
-    font-size: 24px;
+    margin: 2%;
+}
+
+.navigation-links {
+  color: white;
+  font-size: 1.2em;
+
+}
+
+  .logo {
+    padding-left: 20px;
+
+  }
+
+.shop-btn {
+  padding: 4px 10px 4px 10px;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  font-weight: bolder;
+  letter-spacing: 1px;
+}
+
+.navigation-links {
+  margin-top: 5px;
 }
 
 .navbar-container {
@@ -45,40 +81,95 @@ footer {
     -webkit-transition:  0.8s;
 }
 
+@media(min-width: 590px) {
+
+  .navbar-button {
+    color: white;
+
+  }
+}
+
+/* Login // register section*/
+
+
+
+.body-header {
+  font-family: 'Cabin', sans-serif;
+  font-weight: bolder;
+  text-align: center;
+  margin-top: 0px;
+}
+
+.form-control {
+  border-radius: 6px !important;
+}
+
+.red-button {
+  box-shadow: none;
+  background-color: #990100;
+  color: white;
+  border-radius: 3px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 2px solid transparent;
+  letter-spacing: .1em;
+  border-radius: 5px !important;
+}
 
 /* Profile sidebar */
+
 .profile-sidebar{
 
   background: #fff;
-  border: 1px solid #eee
+  border: 1px solid #E8E8E8;
+  border-radius: 7px;
 
+}
+
+.sidebar-text {
+  font-size: 1.2em;
+  display: inline;
+  font-size: 1.5em;
+  color: #333333;
+}
+
+.x-box {
+  padding-top: 2px;
+  margin-right: 2px;
 }
 
 .profile-userpic img {
   float: none;
-
+  border-radius: 8px;
   width: 100%;
   height: 80%;
+  border-radius: 0;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+
+
+
 
 }
 
 .profile-usertitle {
   text-align: center;
   margin-top: 20px;
+  color: #333333;
 }
 
 .profile-usertitle-name {
-  color: #5a7391;
-  font-size: 16px;
+  color: #333333;
+  font-size: 18px;
   font-weight: 600;
   margin-bottom: 7px;
 }
 
 .profile-usertitle-job {
   text-transform: uppercase;
-  color: #5b9bd1;
-  font-size: 12px;
-  font-weight: 600;
+  color: #990100;
+  font-size: 14px;
+  font-weight: bolder;
   margin-bottom: 15px;
 }
 
@@ -113,7 +204,7 @@ footer {
   border-bottom: none;
 }
 
-.profile-usermenu ul li a {
+.profile-usermenu ul li a {ge
   color: #93a3b5;
   font-size: 14px;
   font-weight: 400;
@@ -145,30 +236,59 @@ footer {
 
 
 .panel1 {
-      background-color: #00bed6 !important;
-      min-height: 200px;
+      background-color: #E8E8E8 !important;
+      min-height: 100px;
           font-size: 2.14286rem !important;
               color: #fff !important;
 }
 
 .panel2 {
-      background-color: #9a69cb !important;
-      min-height: 200px;
+      background-color: #E8E8E8 !important;
+      min-height: 100px;
           font-size: 2.14286rem !important;
 }
 
 .panel3 {
-          background-color: #72c02c !important;
-      min-height: 200px;
+      background-color: #E8E8E8 !important;
+      min-height: 100px;
           font-size: 2.14286rem !important;
 }
 
-* {
-  border-radius: 0 !important;
+.poll-title {
+  font-size: 1.1em;
+  color: #333333;
+
+}
+
+.poll-description {
+  font-size: .8em;
+  color: #333333;
+}
+
+.poll-binary-svg {
+  margin: auto;
+  display: block;
+  padding: 5%;
+
+}
+
+.poll-multi-svg {
+  margin: auto;
+  display: block;
+  padding: 5%;
+
+}
+
+.poll-pref-svg {
+  margin: auto;
+  display: block;
+  padding: 5%;
+
 }
 
 .panel {
-  border: 1px solid #eee
+  border: 0px;
+  border-radius: 10px;
 
 }
 #ex1Slider .slider-selection {
@@ -178,4 +298,26 @@ footer {
           border-radius: 4px !important;
           margin-bottom :1em;
 
+}
+
+/* Footer section */
+
+.footer {
+
+  width: 100%;
+  height: 75px;
+  position: relative;
+  bottom: -205px;
+  left: 0px;
+  background-color: #990100;
+  padding-top: 20px;
+
+}
+
+.footer-text {
+  
+  font-weight: bolder;
+  text-align: center;
+  color: white;
+  font-size: .8em
 }

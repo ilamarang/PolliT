@@ -1,0 +1,24 @@
+
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="156.355px" height="140px" viewBox="0 0 156.355 140" enable-background="new 0 0 156.355 140" xml:space="preserve">
+<g>
+	<path fill="#991E20" d="M156.355,136c0,2.2-1.8,4-4,4H4c-2.2,0-4-1.8-4-4v-3.776c0-2.2,1.8-4,4-4h148.355c2.2,0,4,1.8,4,4V136z"/>
+</g>
+<g>
+	<g>
+		<g>
+			<path fill="#B72327" d="M64.783,115.065c0,2.2-1.8,4-4,4H13.715c-2.2,0-4-1.8-4-4V4c0-2.2,1.8-4,4-4h47.068c2.2,0,4,1.8,4,4
+				V115.065z"/>
+		</g>
+		<g>
+			<path fill="#B72327" d="M146.641,115.065c0,2.2-1.8,4-4,4H95.572c-2.2,0-4-1.8-4-4V48.649c0-2.2,1.8-4,4-4h47.068
+				c2.2,0,4,1.8,4,4V115.065z"/>
+		</g>
+	</g>
+</g>
+<rect x="-315.572" y="-36.577" fill="#B72327" width="85.005" height="80.644"/>
+<text transform="matrix(1 0 0 1 -408.6309 127.6611)" fill="#231F20" font-family="'MyriadPro-Regular'" font-size="54.75">#B90504</text>
+<text transform="matrix(1 0 0 1 -408.6309 280.6758)" fill="#231F20" font-family="'MyriadPro-Regular'" font-size="54.75">#990100</text>
+<rect x="-174.078" y="52.258" fill="#B72327" width="114.012" height="111.011"/>
+<rect x="-174.078" y="205.273" fill="#991E20" width="114.012" height="111.011"/>
+</svg>
