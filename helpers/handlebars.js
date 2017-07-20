@@ -3,7 +3,7 @@ function hbsHelpers(hbs) {
     helpers: { // This was missing
       isTemplateOne: function(value, options) {
 
-        if(value.TypeId== 1) {
+        if(value.PollTypeId== 1) {
 
             return options.fn(this);
           } else {
@@ -13,7 +13,7 @@ function hbsHelpers(hbs) {
       ,
       isTemplateTwo: function(value, options) {
 
-        if(value.TypeId== 2) {
+        if(value.PollTypeId== 2) {
 
             return options.fn(this);
           } else {
@@ -23,7 +23,7 @@ function hbsHelpers(hbs) {
       },
       isTemplateThree: function(value, options) {
 
-        if(value.TypeId== 3) {
+        if(value.PollTypeId== 3) {
 
             return options.fn(this);
           } else {

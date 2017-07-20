@@ -15,6 +15,7 @@
     "connect-flash": "*",
     "cookie-parser": "^1.4.1",
     "express": "*",
+    "express-breadcrumbs": "0.0.2",
     "express-handlebars": "*",
     "express-messages": "*",
     "express-session": "*",

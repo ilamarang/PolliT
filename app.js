@@ -78,7 +78,17 @@ app.use(function (req, res, next) {
   next();
 });
 
+//BreadCrumbs
+var breadcrumbs = require('express-breadcrumbs');
+app.use(breadcrumbs.init());
 
+// Set Breadcrumbs home information
+app.use(breadcrumbs.setHome());
+
+app.use('/', breadcrumbs.setHome({
+  name: 'Home',
+  url: '/'
+}));
 
 app.use('/', routes);
 app.use('/users', users);

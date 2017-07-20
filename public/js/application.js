@@ -1,5 +1,3 @@
-
-
 var validatePollSubmit = function() {
 
 console.log('Hello!');
@@ -7,7 +5,7 @@ console.log('Hello!');
 console.log($('#newPollForm').data('polltype'))
 
 if($('#newPollForm').data('polltype')==='multipleChoice') {
-  
+
 }
 
 return true
@@ -127,10 +125,7 @@ $(".createPollButton").click( function(){
 });
 
 $("#submitPollButton").on("click",function() {
-
       submitPoll();
-
-
 })
 
 $("#mainContent").on("click", "#submitbutton", function() {

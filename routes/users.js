@@ -8,11 +8,14 @@ var taco = require('../models/user')
 
 // Register
 router.get('/register', function(req, res){
+
 	res.render('register');
 });
 
 // Login
 router.get('/login', function(req, res){
+	req.breadcrumbs('Login');
+	console.log(req.breadcrumbs());
 	res.render('login');
 });
 

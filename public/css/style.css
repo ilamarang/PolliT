@@ -305,9 +305,9 @@ body {
 .footer {
 
   width: 100%;
-  height: 75px;
+  height: 85px;
   position: relative;
-  bottom: -205px;
+  bottom: -255px;
   left: 0px;
   background-color: #990100;
   padding-top: 20px;
@@ -319,5 +319,6 @@ body {
   font-weight: bolder;
   text-align: center;
   color: white;
-  font-size: .8em
+  font-size: 1em;
+  margin-top: 5px;
 }

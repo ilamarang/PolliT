@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Type = sequelize.define("Type", {
+  var PollType = sequelize.define("PollType", {
     type: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
         associate: function(models) {
           // Associating Author with Posts
           // When an Author is deleted, also delete any associated Posts
-          Type.hasMany(models.Poll, {
+          PollType.hasMany(models.Poll, {
             onDelete: "cascade"
           });
         }
@@ -21,5 +21,5 @@ module.exports = function(sequelize, DataTypes) {
     }
 
   );
-  return Type;
+  return PollType;
 };

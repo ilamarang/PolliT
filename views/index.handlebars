@@ -1,7 +1,7 @@
 <div class='container'>
    <div class="row profile">
       <div class="col-md-3">
-         <div class="profile-sidebar">
+         <div class="profile-sidebar" id="profileColumn" data-userid={{userId}}>
 
             <!-- SIDEBAR USERPIC -->
             <div class="profile-userpic">
@@ -42,10 +42,11 @@
                      </a>
                   </li>
                   <li>
-                     <a href="#" target="_blank">
+                    <a href="javascript:renderCharts()" target="_blank">
                       <svg version="1.1" id="xBox" class="x-box" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><g><path fill="#990100" d="M16.999,1.938c0.65,0,1.2,0.592,1.2,1.292v13.538c0,0.702-0.55,1.293-1.2,1.293H3c-0.65,0-1.2-0.591-1.2-1.293V3.23C1.8,2.53,2.35,1.938,3,1.938H16.999 M16.999,0H3C1.35,0,0,1.454,0,3.23v13.538C0,18.545,1.35,20,3,20h13.999C18.649,20,20,18.545,20,16.769V3.23C20,1.454,18.649,0,16.999,0L16.999,0z"/><g><path fill="#990100" d="M14.339,14.376c0.254,0.389,0.103,0.705-0.338,0.705h-1.24c-0.439,0-1.001-0.322-1.247-0.716l-1.169-1.869c-0.246-0.393-0.649-0.394-0.897-0.001l-1.183,1.873c-0.247,0.392-0.809,0.713-1.249,0.713h-1.24c-0.44,0-0.592-0.316-0.338-0.705l2.621-3.995c0.254-0.387,0.253-1.02-0.001-1.406L5.731,5.442C5.476,5.055,5.628,4.739,6.068,4.739h1.205c0.439,0,1.002,0.32,1.249,0.712l0.924,1.464c0.248,0.392,0.651,0.391,0.897-0.002l0.913-1.459c0.246-0.394,0.807-0.715,1.247-0.715h1.222c0.44,0,0.591,0.315,0.336,0.702l-2.341,3.535c-0.256,0.386-0.257,1.019-0.003,1.405L14.339,14.376z"/></g></g></g></svg>
                       <p class="sidebar-text"> Share polls </p>
                      </a>
+
                   </li>
                   <li>
                      <a href="#">
