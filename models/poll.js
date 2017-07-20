@@ -25,6 +25,13 @@ module.exports = function(sequelize, DataTypes) {
                 allowNull: true
             }
           });
+        },
+        associate: function(models) {
+          // Associating Author with Posts
+          // When an Author is deleted, also delete any associated Posts
+          Poll.hasMany(models.PollResult, {
+            onDelete: "cascade"
+          });
         }
       }
     }

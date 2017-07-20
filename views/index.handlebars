@@ -1,7 +1,7 @@
 <div class='container'>
    <div class="row profile">
       <div class="col-md-3">
-         <div class="profile-sidebar">
+         <div class="profile-sidebar" id="profileColumn" data-userid={{userId}}>
             <!-- SIDEBAR USERPIC -->
             <div class="profile-userpic">
                <img src="http://media.salon.com/2013/03/game_of_thrones_recap.jpg" class="img-responsive" alt="">
@@ -32,10 +32,10 @@
                      <i class="glyphicon glyphicon-user"></i>
                      Account Settings </a>
                   </li>
-                  <li>
-                     <a href="#" target="_blank">
+                  <li id='pollHistory'>
+                     <a href="javascript:renderCharts()" target="_blank">
                      <i class="glyphicon glyphicon-ok"></i>
-                     Tasks </a>
+                     Poll History </a>
                   </li>
                   <li>
                      <a href="#">

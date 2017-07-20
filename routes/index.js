@@ -4,7 +4,8 @@ var router = express.Router();
 // Get Homepage
 router.get('/', ensureAuthenticated, function(req, res){
 	console.log(req.user);
-	res.render('index');
+	console.log(req.breadcrumbs());
+	res.redirect('/home');
 });
 
 function ensureAuthenticated(req, res, next){
@@ -15,5 +16,11 @@ function ensureAuthenticated(req, res, next){
 		res.redirect('/users/login');
 	}
 }
+
+router.get('/home', ensureAuthenticated, function(req, res){
+console.log(req.breadcrumbs());
+res.render('index',{userId: req.user.id});
+})
+
 
 module.exports = router;

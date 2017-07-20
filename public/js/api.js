@@ -32,11 +32,19 @@ var createNewPoll = function() {
 
       }
       console.log('PollType ' + $('#newPollForm').data('polltype'));
-  $.post("/services/addPoll", newPollData).done(function(data){
+  $.post('/services/addPoll', newPollData).done(function(data){
     console.log(data);
 
     $('#pollLink').text(window.location.protocol + "//" + window.location.host + '/submitPoll/' + data.UserId + '/' + data.uuid);
     $('#pollResult').modal('show');
   });
 
+}
+
+var getPollHistory = function() {
+  var pollUserId =  $('#profileColumn').data('userid');
+
+  $.get('/services/getPollHistory/' + pollUserId).done(function(data){
+    return data;
+  })
 }
