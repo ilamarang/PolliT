@@ -81,12 +81,12 @@
 
                 <div class = 'col-md-4'>
                   <div class="panel1 panel panel-primary panel2">
-                    <div class="panel-body panel2"> 
+                    <div class="panel-body panel2">
                       <h2 class="poll-title text-center"> Multi-option Poll </h2>
                       <p class="text-center poll-description"> A poll between multiple options. </p>
                     </div>
                     {{!-- {{ multiple choice poll icon }} --}}
-                    <svg version="1.1" class="poll-svg" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="150.01px" height="107px" viewBox="0 0 150.01 107" enable-background="new 0 0 150.01 107" xml:space="preserve"><g><path fill="#991E20" d="M150.01,103c0,2.2-1.8,4-4,4H4c-2.2,0-4-1.8-4-4v-1.441c0-2.2,1.8-4,4-4h142.01c2.2,0,4,1.8,4,4V103z"/></g><g><g><g><path fill="#B72327" d="M28.001,86.216c0,2.2-1.8,4-4,4H8.121c-2.2,0-4-1.8-4-4V4c0-2.2,1.8-4,4-4h15.88c2.2,0,4,1.8,4,4V86.216z"/></g></g></g><g><g><g><path fill="#B72327" d="M67.297,86.216c0,2.2-1.8,4-4,4h-15.88c-2.2,0-4-1.8-4-4V30.768c0-2.2,1.8-4,4-4h15.88c2.2,0,4,1.8,4,4V86.216z"/></g></g></g><g><g><g><path fill="#B72327" d="M106.592,86.216c0,2.2-1.8,4-4,4H86.713c-2.2,0-4-1.8-4-4V14.905c0-2.2,1.8-4,4-4h15.879c2.2,0,4,1.8,4,4V86.216z"/></g></g></g><g><g><g><path fill="#B72327" d="M145.889,86.216c0,2.2-1.8,4-4,4h-15.881c-2.2,0-4-1.8-4-4V45.638c0-2.2,1.8-4,4-4h15.881c2.2,0,4,1.8,4,4V86.216z"/></g></g></g></svg>  
+                    <svg version="1.1" class="poll-svg" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="150.01px" height="107px" viewBox="0 0 150.01 107" enable-background="new 0 0 150.01 107" xml:space="preserve"><g><path fill="#991E20" d="M150.01,103c0,2.2-1.8,4-4,4H4c-2.2,0-4-1.8-4-4v-1.441c0-2.2,1.8-4,4-4h142.01c2.2,0,4,1.8,4,4V103z"/></g><g><g><g><path fill="#B72327" d="M28.001,86.216c0,2.2-1.8,4-4,4H8.121c-2.2,0-4-1.8-4-4V4c0-2.2,1.8-4,4-4h15.88c2.2,0,4,1.8,4,4V86.216z"/></g></g></g><g><g><g><path fill="#B72327" d="M67.297,86.216c0,2.2-1.8,4-4,4h-15.88c-2.2,0-4-1.8-4-4V30.768c0-2.2,1.8-4,4-4h15.88c2.2,0,4,1.8,4,4V86.216z"/></g></g></g><g><g><g><path fill="#B72327" d="M106.592,86.216c0,2.2-1.8,4-4,4H86.713c-2.2,0-4-1.8-4-4V14.905c0-2.2,1.8-4,4-4h15.879c2.2,0,4,1.8,4,4V86.216z"/></g></g></g><g><g><g><path fill="#B72327" d="M145.889,86.216c0,2.2-1.8,4-4,4h-15.881c-2.2,0-4-1.8-4-4V45.638c0-2.2,1.8-4,4-4h15.881c2.2,0,4,1.8,4,4V86.216z"/></g></g></g></svg>
                     <div class='text-center'>
                       <button id="choicePollButton" data-polltype = "multipleChoice" class="red-button createPollButton">Create Poll!</button>
                     </div> {{!-- {{ END text-center }} --}}
@@ -95,7 +95,7 @@
 
                 <div class = 'col-md-4'>
                   <div class="panel panel-primary panel3">
-                    <div class="panel-body panel3"> 
+                    <div class="panel-body panel3">
                       <h2 class="poll-title text-center"> Preferential Poll </h2>
                       <p class="text-center poll-description"> A poll on a scale between 1-5. </p>
                     </div>
@@ -108,6 +108,13 @@
               </div>
             </div>
          </div> {{!-- {{ END profileContent }} --}}
+         <div class="chartContent">
+           <div class="row" id="charDisplaySection">
+
+
+           </div>
+        </div>
+
       </div> {{!-- {{ END mainContent }} --}}
    </div>
 </div>
@@ -128,6 +135,7 @@
             Please share the following link to your users!
             <h6 id='pollLink'></h6>
           </p>
+        </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

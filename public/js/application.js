@@ -1,3 +1,6 @@
+
+google.charts.load('current', {'packages':['corechart']});
+
 var validatePollSubmit = function() {
 
 console.log('Hello!');
@@ -39,6 +42,7 @@ $(newPollForm).attr('data-polltype',pollType)
 
 //Append the poll to main content area
 $("#mainContent").append(newPollForm);
+
 }
 
 $(document).ready(function(){

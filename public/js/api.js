@@ -12,7 +12,6 @@ var submitPoll = function() {
   })
 }
 
-
 var createNewPoll = function() {
   var newPollData = { };
       newPollData['question'] = $('#pollQuestion').val();
@@ -38,13 +37,15 @@ var createNewPoll = function() {
     $('#pollLink').text(window.location.protocol + "//" + window.location.host + '/submitPoll/' + data.UserId + '/' + data.uuid);
     $('#pollResult').modal('show');
   });
-
 }
+
+
 
 var getPollHistory = function() {
   var pollUserId =  $('#profileColumn').data('userid');
 
   $.get('/services/getPollHistory/' + pollUserId).done(function(data){
-    return data;
+    renderChart(data);
+
   })
 }

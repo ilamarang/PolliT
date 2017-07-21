@@ -37,7 +37,7 @@ router.get('/getPollHistory/:userId',function(req,res) {
 	var userIdentifier = parseInt(req.params.userId)
 	db.PollResult.findAll({
 		attributes:['PollId','optionSelected',[sequelize.fn('count', sequelize.col('optionSelected')), 'count']],
-		include: [{model: db.Poll,required: true,where:{userId:req.params.userId},attributes:[]}],
+		include: [{model: db.Poll,required: true,where:{userId:req.params.userId},attributes:['title','PollTypeId']}],
 		group: ['PollId','optionSelected'],
 		order:['PollId']
 	}).then(function(data){

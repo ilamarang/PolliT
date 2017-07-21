@@ -299,6 +299,9 @@ body {
           margin-bottom :1em;
 
 }
+.dynamicChart {
+  min-height: 200px;
+}
 
 /* Footer section */
 
@@ -315,7 +318,7 @@ body {
 }
 
 .footer-text {
-  
+
   font-weight: bolder;
   text-align: center;
   color: white;
