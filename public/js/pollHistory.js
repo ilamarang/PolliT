@@ -1,5 +1,5 @@
 function renderChart(data) {
-	
+
   //Group result Arrays by Poll ID
   var groupPollArray = []
   var tempArray = []

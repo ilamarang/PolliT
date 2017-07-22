@@ -3,6 +3,12 @@ google.charts.load('current', {'packages':['corechart']});
 
 var validatePollSubmit = function() {
 
+console.log('Hello!');
+
+google.charts.load('current', {'packages':['corechart']});
+
+var validatePollSubmit = function() {
+
   console.log('Hello!');
 
   console.log($('#newPollForm').data('polltype'))
@@ -20,7 +26,14 @@ var validatePollSubmit = function() {
 // find out where that pollType variable is 
 
 
+
 var createPoll = function(pollType) {
+
+//Append the poll to main content area
+$("#mainContent").append(newPollForm);
+
+}
+
 
  
   if(pollType =='multipleChoice') {
