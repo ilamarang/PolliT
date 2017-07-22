@@ -13,10 +13,11 @@ db.Poll.findOne({
   }
 }).then(function(resultSet) {
   console.log('Radar ' + resultSet.toJSON() );
+  var pollDataSet = {}
   var pollDataSet = resultSet.toJSON();
-  console.log(pollDataSet.TypeId)
   res.render('poll',{
-    pollData : pollDataSet
+    pollData : pollDataSet,
+    options : JSON.parse(pollDataSet.options)
   });
 })
 

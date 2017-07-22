@@ -4,6 +4,7 @@ var submitPoll = function() {
   submitPollData['uuid'] = $("#submitPollForm").data("uuid");
   submitPollData['pollId'] = $("#submitPollForm").data("pollid");
   submitPollData['email'] = $("#pollSubmitEmail").val();
+  //submitPollData['name'] = $("#pollSubmitName").val();
   submitPollData['optionSelected'] = $('#pollSelection :selected').text();
   $.post("/services/submitPoll",submitPollData).done(function(data){
     $('#submitPollRow').hide();
@@ -24,6 +25,13 @@ var createNewPoll = function() {
 
         case 'multipleChoice':
         newPollData['pollType'] = 2;
+        var options= {}
+        options['option1'] = $('#pollChoice1').val();
+        options['option2'] = $('#pollChoice2').val();
+        options['option3'] = $('#pollChoice3').val();
+        options['option4'] = $('#pollChoice4').val();
+        newPollData['optionCreated'] = options;
+        console.log(newPollData)
         break;
 
         case 'points':
@@ -32,12 +40,17 @@ var createNewPoll = function() {
 
       }
       console.log('PollType ' + $('#newPollForm').data('polltype'));
-  $.post('/services/addPoll', newPollData).done(function(data){
-    console.log(data);
-
-    $('#pollLink').text(window.location.protocol + "//" + window.location.host + '/submitPoll/' + data.UserId + '/' + data.uuid);
-    $('#pollResult').modal('show');
-  });
+    $.ajax ({
+      url: '/services/addPoll',
+      type: "POST",
+      data: JSON.stringify(newPollData),
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      success: function(data){
+        $('#pollLink').text(window.location.protocol + "//" + window.location.host + '/submitPoll/' + data.UserId + '/' + data.uuid);
+        $('#pollResult').modal('show');
+    }
+});
 }
 
 

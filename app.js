@@ -30,8 +30,9 @@ app.set('view engine', 'handlebars');
 
 
 // BodyParser Middleware
-app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 
 // Set Static Folder
