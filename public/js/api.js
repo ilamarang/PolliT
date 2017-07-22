@@ -53,7 +53,9 @@ var createNewPoll = function() {
 });
 }
 
-
+var showProfileContent = function() {
+    $('.profileContent').show();
+}
 
 var getPollHistory = function() {
   var pollUserId =  $('#profileColumn').data('userid');

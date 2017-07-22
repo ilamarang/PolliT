@@ -85,6 +85,8 @@ $(document).ready(function(){
     createPoll($(this).data('polltype'));
   });
 
+  getPollHistory();
+  $('.profileContent').hide();
 });
 
 
