@@ -6,13 +6,13 @@ var sequelize = require('sequelize');
 // Get Homepage
 router.post('/addPoll',function(req, res){
 	console.log(req.body);
+	console.log(req.body.options)
   var newPoll = {};
   newPoll['UserId'] = req.user.id;
   newPoll['title'] = req.body.question;
   newPoll['PollTypeId'] = req.body.pollType;
-  newPoll['options'] = '1';
+  newPoll['options'] = JSON.stringify(req.body.optionCreated);
 	newPoll['uuid'] = uuid();
-
   console.log(newPoll);
   db.Poll.create(newPoll).then(function(resultSet){
   res.json(newPoll);

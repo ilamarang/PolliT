@@ -98,3 +98,10 @@ $("#mainContent").on("click", "#submitbutton", function() {
           createNewPoll();
 }
 })
+
+$("#modalCloseButton").on("click",function() {
+  console.log('Modal Close Button!!');
+  $('#newPollForm').hide();
+  $('.profileContent').show();
+
+})
