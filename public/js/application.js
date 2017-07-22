@@ -3,12 +3,6 @@ google.charts.load('current', {'packages':['corechart']});
 
 var validatePollSubmit = function() {
 
-console.log('Hello!');
-
-google.charts.load('current', {'packages':['corechart']});
-
-var validatePollSubmit = function() {
-
   console.log('Hello!');
 
   console.log($('#newPollForm').data('polltype'))
@@ -23,19 +17,18 @@ var validatePollSubmit = function() {
 // would have to make an if else statement to differenciate between the
 // types of polls so i can have different messages pop up.
 // potentially could also have a modal trigger but that might be harder.
-// find out where that pollType variable is 
+// find out where that pollType variable is
 
 
 
 var createPoll = function(pollType) {
 
-//Append the poll to main content area
-$("#mainContent").append(newPollForm);
+var newPollForm = $("<form id='newPollForm'>");
+var newPollQuestionFormGroup = $("<div class='form-group'> ");
+var newPollLabel = $("<label for='pollQuestion'>Enter Poll Question:</label>").appendTo(newPollQuestionFormGroup);
+var newPollQuestion = $("<input type='text' class='form-control' id='pollQuestion'> </div>").appendTo(newPollQuestionFormGroup);
+var newPollSubmitButton = $("<input type='button' class='btn btn-primary' id='submitbutton' value='Submit Button'>");
 
-}
-
-
- 
   if(pollType =='multipleChoice') {
 
      // Create a multipe choice poll Poll //
@@ -61,7 +54,7 @@ $("#mainContent").append(newPollForm);
     var pollDescription = $("<h1 class='poll-description text-center'> This is a Preferential Question poll, meaning on a scale of 1 - 5. type of poll does not have editable options. Please type your question below. </h1>").appendTo(newPollQuestionFormGroup);
     var newPollLabel = $("<label for='pollQuestion'>Enter Your Question:</label>").appendTo(newPollQuestionFormGroup);
     var newPollQuestion = $("<input type='text' class='form-control' id='pollQuestion'> </div>").appendTo(newPollQuestionFormGroup);
-  
+
   } else {
     // create a preferetial poll //
     var newPollForm = $("<form id='newPollForm'>");
@@ -104,5 +97,3 @@ $("#mainContent").on("click", "#submitbutton", function() {
           createNewPoll();
 }
 })
-
-
