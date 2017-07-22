@@ -48,8 +48,6 @@ function drawChart(resultData,location) {
         	sliceVisibilityThreshold: .2,
         	fontSize: 14,
           fontColor: "#333333",
-          colors:['#820E00','#A11100','#A81200', '#D11700', '#FF1B00'],
-        	fontName: 'Cabin',
         	title: resultData[0].Poll.title
         };
         var chart = new google.visualization.PieChart(document.getElementById(location));
@@ -62,7 +60,3 @@ $("#charDisplaySection").on("click", function() {
   $("#singlePollResult").modal('show');
 
 });
-
-
-
-
