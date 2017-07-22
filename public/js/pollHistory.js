@@ -22,7 +22,7 @@ function renderChart(data) {
   for(var locationCounter=0;locationCounter < groupPollArray.length;locationCounter++)
   {
      var newChartColumnId = "chartItemDisplay" + locationCounter
-     var newChartColumn = $("<div class='col-md-6 dynamicChart'> " ).attr("id",newChartColumnId).appendTo("#charDisplaySection")
+     var newChartColumn = $("<div class='col-md-6 dynamicChart chart-panel'> " ).attr("id",newChartColumnId).appendTo("#charDisplaySection")
      google.charts.setOnLoadCallback(drawChart(groupPollArray[locationCounter],newChartColumnId));
   }
 
@@ -44,9 +44,25 @@ function drawChart(resultData,location) {
   console.log(chartArray);
         var data = google.visualization.arrayToDataTable(chartArray);
         var options = {
-          title: resultData[0].Poll.title
+        	backgroundColor: "#E8E8E8",
+        	sliceVisibilityThreshold: .2,
+        	fontSize: 14,
+          fontColor: "#333333",
+          colors:['#820E00','#A11100','#A81200', '#D11700', '#FF1B00'],
+        	fontName: 'Cabin',
+        	title: resultData[0].Poll.title
         };
         var chart = new google.visualization.PieChart(document.getElementById(location));
         chart.draw(data, options);
 
 }
+
+$("#charDisplaySection").on("click", function() {
+  console.log("google section clicked!");
+  $("#singlePollResult").modal('show');
+
+});
+
+
+
+

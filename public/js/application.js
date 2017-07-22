@@ -90,7 +90,8 @@ $(document).ready(function(){
 
 $("#submitPollButton").on("click",function() {
       submitPoll();
-})
+});
+
 
 $("#mainContent").on("click", "#submitbutton", function() {
   if (validatePollSubmit()) {

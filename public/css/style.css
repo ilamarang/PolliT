@@ -48,6 +48,7 @@ body {
   .logo {
 
     padding-left: 20px;
+    margin: 0px;
   }
 
 .shop-btn {
@@ -345,7 +346,7 @@ body {
 /* Poll answer section */
 
 .bottom-spacer {
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 } 
 
 .success-message {
@@ -355,6 +356,28 @@ body {
   margin-bottom: 240px;
   font-weight: bolder;
 
+}
+
+.poll-submit-form {
+
+  margin-bottom: 20px;
+}
+
+/* Poll display section */
+
+.chart-panel {
+  
+  background-color: #E8E8E8 !important;
+  border: 0px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 15px;
+  max-width: 400px;
+  font-family: 'Cabin', sans-serif;
+}
+
+#charDisplaySection {
+  padding: 8px;
 }
 
 /* Modal section */
