@@ -7,11 +7,11 @@ var submitPoll = function() {
   submitPollData['optionSelected'] = $('#pollSelection :selected').text();
   $.post("/services/submitPoll",submitPollData).done(function(data){
     $('#submitPollRow').hide();
-    var successMessage = $('<div class="center-text"><h1> Thank you! - Your choice has been successfully Registered! </h1></div>')
+    // this is where you have to fix the last page
+    var successMessage = $('<div class="success-message"><h1> Thank you!</h1> <h2 >Your choice has been successfully Registered! </h2> </div>')
     $('#submitPollContainer').append(successMessage);
   })
 }
-
 
 var createNewPoll = function() {
   var newPollData = { };
@@ -38,13 +38,15 @@ var createNewPoll = function() {
     $('#pollLink').text(window.location.protocol + "//" + window.location.host + '/submitPoll/' + data.UserId + '/' + data.uuid);
     $('#pollResult').modal('show');
   });
-
 }
+
+
 
 var getPollHistory = function() {
   var pollUserId =  $('#profileColumn').data('userid');
 
   $.get('/services/getPollHistory/' + pollUserId).done(function(data){
-    return data;
+    renderChart(data);
+
   })
 }

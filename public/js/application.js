@@ -1,3 +1,6 @@
+
+google.charts.load('current', {'packages':['corechart']});
+
 var validatePollSubmit = function() {
 
   console.log('Hello!');
@@ -17,7 +20,6 @@ var validatePollSubmit = function() {
 // find out where that pollType variable is 
 
 
-
 var createPoll = function(pollType) {
 
  
@@ -28,7 +30,7 @@ var createPoll = function(pollType) {
      // multiple choice options
     var newPollForm = $("<form id='newPollForm'>");
     var newPollQuestionFormGroup = $("<div class='form-group'> ");
-    var pollDescription = $("<h2 class='poll-description'> This is a multiple answer poll. Please fill in your question and options below. </h2>").appendTo(newPollQuestionFormGroup);
+    var pollDescription = $("<h1 class='poll-description text-center'> This is a multiple answer poll. Please fill in your question and options below. </h1>").appendTo(newPollQuestionFormGroup);
     var newPollLabel = $("<label for='pollQuestion'>Enter Your Question:</label>").appendTo(newPollQuestionFormGroup);
     var newPollQuestion = $("<input type='text' class='form-control' id='pollQuestion'> </div>").appendTo(newPollQuestionFormGroup);
     var newMultipleChoicePollTypeLabel = $("<div class='row text-center'> <label></label> </div>").appendTo(newPollQuestionFormGroup);
@@ -43,7 +45,7 @@ var createPoll = function(pollType) {
      // Create a single Poll //
     var newPollForm = $("<form id='newPollForm'>");
     var newPollQuestionFormGroup = $("<div class='form-group'> ");
-    var pollDescription = $("<h2 class='poll-description'> This is a Preferential Question poll, meaning on a scale of 1 - 5. type of poll does not have editable options. Please type your question below. </h2>").appendTo(newPollQuestionFormGroup);
+    var pollDescription = $("<h1 class='poll-description text-center'> This is a Preferential Question poll, meaning on a scale of 1 - 5. type of poll does not have editable options. Please type your question below. </h1>").appendTo(newPollQuestionFormGroup);
     var newPollLabel = $("<label for='pollQuestion'>Enter Your Question:</label>").appendTo(newPollQuestionFormGroup);
     var newPollQuestion = $("<input type='text' class='form-control' id='pollQuestion'> </div>").appendTo(newPollQuestionFormGroup);
   
@@ -51,7 +53,7 @@ var createPoll = function(pollType) {
     // create a preferetial poll //
     var newPollForm = $("<form id='newPollForm'>");
     var newPollQuestionFormGroup = $("<div class='form-group'> ");
-    var pollDescription = $("<h2 class='poll-description'> This is a single question poll. type of poll does not have editable options. Please type your question below.</h2>").appendTo(newPollQuestionFormGroup);
+    var pollDescription = $("<h1 class='poll-description text-center'> This is a single question poll. type of poll does not have editable options. Please type your question below.</h1>").appendTo(newPollQuestionFormGroup);
     var newPollLabel = $("<label for='pollQuestion'>Enter Your Question:</label>").appendTo(newPollQuestionFormGroup);
     var newPollQuestion = $("<input type='text' class='form-control' id='pollQuestion'> </div>").appendTo(newPollQuestionFormGroup);
 
