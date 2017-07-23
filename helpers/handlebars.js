@@ -31,7 +31,7 @@ function hbsHelpers(hbs) {
           }
       }
 
-      // More helpers...
+      
     },
     defaultLayout: 'layout'
 
