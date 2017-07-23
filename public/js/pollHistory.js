@@ -30,7 +30,6 @@ function renderChart(data) {
 
 function drawChart(resultData,location) {
 
-  console.log(resultData[0].Poll)
   var chartArray = [['Task', 'Hours per Day']]
 
   resultData.forEach(function(value,index){
@@ -55,8 +54,26 @@ function drawChart(resultData,location) {
 
 }
 
+function renderAllPolls(data) {
+  console.log(data);
+$('.chartContent').hide();
+$('.profileContent').hide();
+$('.pollHistoryContent').show();
+
+    data.forEach(function(value,index){
+        if(value.isActive) {
+            $('<tr><td>' + value.title + '</td> <td>' +value.updatedAt.substring(0,10)+'</td><td> <button class="deactivateButton" data-uuid=' + value.uuid + '> Deactivate Poll </button> </td>' ).appendTo('#pollHistoryTableBody');
+        } else {
+          $('<tr><td>' + value.title + '</td> <td>' +value.updatedAt.substring(0,10)+'</td><td> <button disabled class="deactivateButton" data-uuid=' + value.uuid + '> Deactivated </button> </td>' ).appendTo('#pollHistoryTableBody');
+        }
+
+    })
+
+}
+
+
 $("#charDisplaySection").on("click", function() {
-  console.log("google section clicked!");
+
   $("#singlePollResult").modal('show');
 
 });

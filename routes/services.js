@@ -34,7 +34,7 @@ db.PollResult.create(submitPoll).then(function(resultSet) {
 
 router.get('/getPollHistory/:userId',function(req,res) {
 	console.log(req.params.userId)
-	var userIdentifier = parseInt(req.params.userId)
+	var userIdentifier = parseInt(req.params.userId);
 	db.PollResult.findAll({
 		attributes:['PollId','optionSelected',[sequelize.fn('count', sequelize.col('optionSelected')), 'count']],
 		include: [{model: db.Poll,required: true,where:{userId:req.params.userId},attributes:['title','PollTypeId']}],
@@ -44,5 +44,32 @@ router.get('/getPollHistory/:userId',function(req,res) {
 		res.json(data);
 	})
 })
+
+router.get('/getAllPolls/:userId' , function(req,res) {
+	console.log(req.params.userId)
+	var userIdentifier = parseInt(req.params.userId);
+	db.Poll.findAll({
+
+	}).then(function(data) {
+		res.json(data);
+	});
+
+})
+
+router.post('/deactivatePoll',function(req, res){
+	var deactivatePoll = {};
+	deactivatePoll['uuid'] = req.body.uuid;
+	db.Poll.update({
+		isActive:false},
+		{where: {
+			uuid: req.body.uuid
+		}}
+	).then(function(data) {
+			res.json({})
+	})
+
+
+
+});
 
 module.exports = router;

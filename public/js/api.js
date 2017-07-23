@@ -53,15 +53,33 @@ var createNewPoll = function() {
 });
 }
 
-var showProfileContent = function() {
-    $('.profileContent').show();
-}
+
 
 var getPollHistory = function() {
+    $('.profileContent').hide();
   var pollUserId =  $('#profileColumn').data('userid');
 
   $.get('/services/getPollHistory/' + pollUserId).done(function(data){
     renderChart(data);
 
   })
+}
+
+var deactivatePoll = function (pollUUID) {
+  var pollInfo = {};
+  pollInfo['uuid'] = pollUUID;
+  console.log(pollUUID);
+  $.post('/services/deactivatePoll',pollInfo).done(function(data){
+    console.log('Hello')
+  })
+}
+
+var getAllPolls = function() {
+var pollUserId =  $('#profileColumn').data('userid');
+
+$.get('/services/getAllPolls/' + pollUserId).done(function(data){
+
+renderAllPolls(data);
+})
+
 }

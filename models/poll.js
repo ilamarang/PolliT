@@ -13,6 +13,10 @@ module.exports = function(sequelize, DataTypes) {
   ,
   uuid: {
     type: DataTypes.TEXT
+  },
+  isActive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true
   }
 },
     {

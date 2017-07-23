@@ -23,6 +23,7 @@ var validatePollSubmit = function() {
 
 var createPoll = function(pollType) {
 
+
 var newPollForm = $("<form id='newPollForm'>");
 var newPollQuestionFormGroup = $("<div class='form-group'> ");
 var newPollLabel = $("<label for='pollQuestion'>Enter Poll Question:</label>").appendTo(newPollQuestionFormGroup);
@@ -87,6 +88,7 @@ $(document).ready(function(){
 
   getPollHistory();
   $('.profileContent').hide();
+  $('.pollHistoryContent').hide();
 });
 
 
@@ -107,3 +109,17 @@ $("#modalCloseButton").on("click",function() {
   $('.profileContent').show();
 
 })
+
+$(".pollHistoryContent").on("click",".deactivateButton",function() {
+
+  deactivatePoll($(this).data('uuid'));
+  $("#pollHistoryTableBody").empty();
+  getAllPolls();
+
+})
+
+var showProfileContent = function() {
+    $('.profileContent').show();
+    $('.chartContent').hide();
+    $('.pollHistoryContent').hide();
+}
