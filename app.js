@@ -10,7 +10,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var db = require('./models');
-
+var PORT = process.env.PORT || 3000;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -98,7 +98,7 @@ app.use('/submitPoll', poll);
 
 // Set Port
 db.sequelize.sync({force:true}).then(function() {
-  app.listen(3000, function() {
+  app.listen(PORT, function() {
     console.log("port listening on " + 3000);
   });
 });
