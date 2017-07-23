@@ -97,7 +97,7 @@ app.use('/services', services);
 app.use('/submitPoll', poll);
 
 // Set Port
-db.sequelize.sync({force:false}).then(function() {
+db.sequelize.sync({force:true}).then(function() {
   app.listen(3000, function() {
     console.log("port listening on " + 3000);
   });
