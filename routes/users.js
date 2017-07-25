@@ -14,8 +14,7 @@ router.get('/register', function(req, res){
 
 // Login
 router.get('/login', function(req, res){
-	req.breadcrumbs('Login');
-	console.log(req.breadcrumbs());
+	req.breadcrumbs('Login');	
 	res.render('login');
 });
 
