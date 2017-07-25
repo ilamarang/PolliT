@@ -100,6 +100,8 @@ module.exports = {
 },
 
 drawChart: function(resultData,location) {
+  if(resultData.length > 0)
+  {
 
   var chartArray = [['Task', 'Hours per Day']]
 
@@ -111,7 +113,7 @@ drawChart: function(resultData,location) {
     chartArray.push(tempData);
 
   })
-  console.log(chartArray);
+
         var data = google.visualization.arrayToDataTable(chartArray);
         var options = {
         	backgroundColor: "#E8E8E8",
@@ -123,7 +125,10 @@ drawChart: function(resultData,location) {
         };
         var chart = new google.visualization.PieChart(document.getElementById(location));
         chart.draw(data, options);
-
+ }
+ else {
+    module.exports.showProfileContent();
+ }
 },
 
 renderAllPolls: function(data) {
@@ -273,9 +278,10 @@ $("#mainContent").on("click", "#submitbutton", function() {
 $("#modalCloseButton").on("click",function() {
   console.log('Modal Close Button!!');
   $('#newPollForm').hide();
-  $('.profileContent').hide();
-  getPollHistory();
   $('.chartContent').show();
+
+  getPollHistory();
+
 })
 
 $(".pollHistoryContent").on("click",".deactivateButton",function() {
