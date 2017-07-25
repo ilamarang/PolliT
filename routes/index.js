@@ -19,7 +19,7 @@ function ensureAuthenticated(req, res, next){
 
 router.get('/home', ensureAuthenticated, function(req, res){
 
-res.render('index',{userId: req.user.id, userName: req.user.name});
+res.render('index',{userId: req.user.id, userName: req.user.name, imageSource: req.user.imageSource});
 })
 
 

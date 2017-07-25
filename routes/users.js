@@ -14,7 +14,7 @@ router.get('/register', function(req, res){
 
 // Login
 router.get('/login', function(req, res){
-	req.breadcrumbs('Login');	
+	req.breadcrumbs('Login');
 	res.render('login');
 });
 
@@ -25,6 +25,7 @@ router.post('/register', function(req, res){
 	var username = req.body.username;
 	var password = req.body.password;
 	var password2 = req.body.password2;
+	var imageSource = req.body.imageSource;
 
 	// Validation
 	req.checkBody('name', 'Name is required').notEmpty();
@@ -45,7 +46,8 @@ router.post('/register', function(req, res){
 			name: name,
 			email:email,
 			username: username,
-			password: password
+			password: password,
+			imageSource: imageSource
 		});
 
 		bcrypt.genSalt(10, function(err, salt) {
