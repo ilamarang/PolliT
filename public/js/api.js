@@ -1,5 +1,8 @@
+var pollHistory = require('./pollHistory.js')
 
-var submitPoll = function() {
+module.exports = {
+
+submitPoll: function() {
   var submitPollData = { };
   submitPollData['uuid'] = $("#submitPollForm").data("uuid");
   submitPollData['pollId'] = $("#submitPollForm").data("pollid");
@@ -12,9 +15,9 @@ var submitPoll = function() {
     var successMessage = $('<div class="success-message"><h1> Thank you!</h1> <h2 >Your choice has been successfully Registered! </h2> </div>')
     $('#submitPollContainer').append(successMessage);
   })
-}
+},
 
-var createNewPoll = function() {
+createNewPoll: function() {
   var newPollData = { };
       newPollData['question'] = $('#pollQuestion').val();
 
@@ -51,35 +54,34 @@ var createNewPoll = function() {
         $('#pollResult').modal('show');
     }
 });
-}
-
-
-
-var getPollHistory = function() {
+},
+getPollHistory: function() {
     $('.profileContent').hide();
   var pollUserId =  $('#profileColumn').data('userid');
 
   $.get('/services/getPollHistory/' + pollUserId).done(function(data){
-    renderChart(data);
+    pollHistory.renderChart(data);
 
   })
-}
+},
 
-var deactivatePoll = function (pollUUID) {
+deactivatePoll: function (pollUUID) {
   var pollInfo = {};
   pollInfo['uuid'] = pollUUID;
   console.log(pollUUID);
   $.post('/services/deactivatePoll',pollInfo).done(function(data){
     console.log('Hello')
   })
-}
+},
 
-var getAllPolls = function() {
+getAllPolls: function() {
 var pollUserId =  $('#profileColumn').data('userid');
 
 $.get('/services/getAllPolls/' + pollUserId).done(function(data){
 
-renderAllPolls(data);
+pollHistory.renderAllPolls(data);
 })
+
+}
 
 }

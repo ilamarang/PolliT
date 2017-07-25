@@ -1,3 +1,5 @@
+var pollHistory = require('./pollHistory.js')
+var api= require('./api.js')
 
 google.charts.load('current', {'packages':['corechart']});
 
@@ -86,20 +88,20 @@ $(document).ready(function(){
     createPoll($(this).data('polltype'));
   });
 
-  getPollHistory();
+  api.getPollHistory();
   $('.profileContent').hide();
   $('.pollHistoryContent').hide();
 });
 
 
 $("#submitPollButton").on("click",function() {
-      submitPoll();
+      api.submitPoll();
 });
 
 
 $("#mainContent").on("click", "#submitbutton", function() {
   if (validatePollSubmit()) {
-          createNewPoll();
+          api.createNewPoll();
 }
 })
 
@@ -112,14 +114,27 @@ $("#modalCloseButton").on("click",function() {
 
 $(".pollHistoryContent").on("click",".deactivateButton",function() {
 
-  deactivatePoll($(this).data('uuid'));
+  api.deactivatePoll($(this).data('uuid'));
   $("#pollHistoryTableBody").empty();
-  getAllPolls();
+  api.getAllPolls();
 
 })
 
-var showProfileContent = function() {
-    $('.profileContent').show();
-    $('.chartContent').hide();
-    $('.pollHistoryContent').hide();
-}
+
+$("#charDisplaySection").on("click", function() {
+
+  $("#singlePollResult").modal('show');
+
+});
+
+$("#showProfile").on("click", function() {
+
+  pollHistory.showProfileContent();
+
+});
+
+$("#getPoll").on("click", function() {
+
+  api.getAllPolls();
+
+});

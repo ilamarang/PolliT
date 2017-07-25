@@ -91,13 +91,15 @@ app.use('/', breadcrumbs.setHome({
   url: '/'
 }));
 
+
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/services', services);
 app.use('/submitPoll', poll);
 
 // Set Port
-db.sequelize.sync({force:true}).then(function() {
+db.sequelize.sync({force:false}).then(function() {
   app.listen(PORT, function() {
     console.log("port listening on " + 3000);
   });

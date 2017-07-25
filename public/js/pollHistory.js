@@ -1,4 +1,6 @@
-function renderChart(data) {
+module.exports = {
+
+  renderChart: function(data) {
 
   //Group result Arrays by Poll ID
   var groupPollArray = []
@@ -23,12 +25,12 @@ function renderChart(data) {
   {
      var newChartColumnId = "chartItemDisplay" + locationCounter
      var newChartColumn = $("<div class='col-md-6 dynamicChart chart-panel'> " ).attr("id",newChartColumnId).appendTo("#charDisplaySection")
-     google.charts.setOnLoadCallback(drawChart(groupPollArray[locationCounter],newChartColumnId));
+     google.charts.setOnLoadCallback(module.exports.drawChart(groupPollArray[locationCounter],newChartColumnId));
   }
 
-}
+},
 
-function drawChart(resultData,location) {
+drawChart: function(resultData,location) {
 
   var chartArray = [['Task', 'Hours per Day']]
 
@@ -47,14 +49,15 @@ function drawChart(resultData,location) {
         	sliceVisibilityThreshold: .2,
         	fontSize: 14,
           fontColor: "#333333",
-        	title: resultData[0].Poll.title
+          title: resultData[0].Poll.title
+
         };
         var chart = new google.visualization.PieChart(document.getElementById(location));
         chart.draw(data, options);
 
-}
+},
 
-function renderAllPolls(data) {
+renderAllPolls: function(data) {
   console.log(data);
 $('.chartContent').hide();
 $('.profileContent').hide();
@@ -69,11 +72,12 @@ $('.pollHistoryContent').show();
 
     })
 
+},
+showProfileContent : function() {
+      $('.profileContent').show();
+      $('.chartContent').hide();
+      $('.pollHistoryContent').hide();
+  }
+
+
 }
-
-
-$("#charDisplaySection").on("click", function() {
-
-  $("#singlePollResult").modal('show');
-
-});
