@@ -108,8 +108,9 @@ $("#mainContent").on("click", "#submitbutton", function() {
 $("#modalCloseButton").on("click",function() {
   console.log('Modal Close Button!!');
   $('#newPollForm').hide();
-  $('.profileContent').show();
-
+  $('.profileContent').hide();
+  getPollHistory();
+  $('.chartContent').show();
 })
 
 $(".pollHistoryContent").on("click",".deactivateButton",function() {
