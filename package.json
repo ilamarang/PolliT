@@ -4,7 +4,8 @@
   "description": "Simple authentication system",
   "main": "app.js",
   "scripts": {
-    "build" : "webpack"
+    "build" : "webpack",
+    "start": "node app.js"
   },
   "author": "Brad Traversy",
   "license": "ISC",
