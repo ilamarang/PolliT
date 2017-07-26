@@ -77,7 +77,7 @@ module.exports = {
   //var tempArray = []
   //console.log(data);
 
-  dbdata.forEach(function(value,index) {    
+  dbdata.forEach(function(value,index) {
   /*  if(index === 0) {
       tempArray.push(value)
     }
@@ -140,6 +140,8 @@ renderAllPolls: function(data) {
 $('.chartContent').hide();
 $('.profileContent').hide();
 $('.pollHistoryContent').show();
+
+    $(".table > tbody").html("");
 
     data.forEach(function(value,index){
         if(value.isActive) {
