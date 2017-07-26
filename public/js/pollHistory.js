@@ -1,14 +1,15 @@
+
+var dbdataConvert = require('./convert.js');
 module.exports = {
 
-  renderChart: function(data) {
-
+  renderChart: function(dbdata) {
   //Group result Arrays by Poll ID
   var groupPollArray = []
-  var tempArray = []
-  console.log(data);
+  //var tempArray = []
+  //console.log(data);
 
-  data.forEach(function(value,index) {
-    if(index === 0) {
+  dbdata.forEach(function(value,index) {    
+  /*  if(index === 0) {
       tempArray.push(value)
     }
 
@@ -19,8 +20,11 @@ module.exports = {
       tempArray.length=0;
       tempArray.push(value);
     }
-  })
-  groupPollArray.push([].concat(tempArray));
+  })*/
+  //groupPollArray.push([].concat(tempArray));
+    groupPollArray.push(dbdataConvert.convert(value));
+  });
+
   for(var locationCounter=0;locationCounter < groupPollArray.length;locationCounter++)
   {
      var newChartColumnId = "chartItemDisplay" + locationCounter

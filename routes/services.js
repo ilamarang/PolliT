@@ -35,14 +35,23 @@ db.PollResult.create(submitPoll).then(function(resultSet) {
 router.get('/getPollHistory/:userId',function(req,res) {
 	console.log(req.params.userId)
 	var userIdentifier = parseInt(req.params.userId);
-	db.PollResult.findAll({
+	/*db.PollResult.findAll({
 		attributes:['PollId','optionSelected',[sequelize.fn('count', sequelize.col('optionSelected')), 'count']],
 		include: [{model: db.Poll,required: true,where:{userId:req.params.userId},attributes:['title','PollTypeId']}],
 		group: ['PollId','optionSelected'],
 		order:['PollId']
 	}).then(function(data){
 		res.json(data);
-	})
+	})*/
+
+	db.Poll.findAll({
+		where: {
+		UserId: req.params.userId
+	},
+	include: [db.PollResult]
+	}).then(function(dbPolls) {
+		res.json(dbPolls);
+	});
 })
 
 router.get('/getAllPolls/:userId' , function(req,res) {

@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
     type: DataTypes.BOOLEAN,
     defaultValue: true
   }
-},
+}); /*,
     {
       // We're saying that we want our Author to have Posts
       classMethods: {
@@ -39,6 +39,23 @@ module.exports = function(sequelize, DataTypes) {
         }
       }
     }
-  );
+  );*/
+
+  Poll.associate = function(models) {
+    // We're saying that a Poll should belong to an User
+    // A Poll can't be created without an User due to the foreign key constraint
+    Poll.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+
+    // Associating PollResult with Poll
+    // When an Poll is deleted, also delete any associated PollResult
+    Poll.hasMany(models.PollResult, {
+      onDelete: "cascade"
+    });
+  };
+
   return Poll;
 };

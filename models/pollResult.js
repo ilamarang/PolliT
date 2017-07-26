@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
 
-  },
+  });/*,
     {
       classMethods: {
         associate: function(models) {
@@ -37,6 +37,16 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   );
-  PollResult.removeAttribute('id');
+  PollResult.removeAttribute('id');*/
+  
+  PollResult.associate = function(models) {
+    // We're saying that a PollResult should belong to a Poll
+    // A PollResult can't be created without a Poll due to the foreign key constraint
+    PollResult.belongsTo(models.Poll, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
   return PollResult;
 };
