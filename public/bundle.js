@@ -346,7 +346,7 @@ $(".pollHistoryContent").on("click",".deactivateButton",function() {
 
 $(".pollHistoryContent").on("click",".seeMoreButton", function() {
   console.log("clicked");
-  // $('#pollLink').text(window.location.protocol + "//" + window.location.host + '/submitPoll/' + data.UserId + '/' + data.uuid);
+  $('#pollInformation').text(window.location.protocol + "//" + window.location.host + '/submitPoll/' + $('#profileColumn').data('userid') + '/' + $(this).data('uuid'));
   $('#pollResultOpener').modal('show');
 });
 
