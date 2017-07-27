@@ -192,13 +192,6 @@ var validatePollSubmit = function() {
   return true
 };
 
-// would have to make an if else statement to differenciate between the
-// types of polls so i can have different messages pop up.
-// potentially could also have a modal trigger but that might be harder.
-// find out where that pollType variable is
-
-
-
 var createPoll = function(pollType) {
 
 
@@ -209,21 +202,18 @@ var newPollQuestion = $("<input type='text' class='form-control' id='pollQuestio
 var newPollSubmitButton = $("<input type='button' class='btn btn-primary' id='submitbutton' value='Submit Button'>");
 
   if(pollType =='multipleChoice') {
-
-     // Create a multipe choice poll Poll //
-     // make button on each option to get rid of some of the
-     // multiple choice options
+    // Create a multiple choice poll //
     var newPollForm = $("<form id='newPollForm'>");
     var newPollQuestionFormGroup = $("<div class='form-group'> ");
     var pollDescription = $("<h1 class='poll-description text-center'> This is a multiple answer poll. Please fill in your question and options below. </h1>").appendTo(newPollQuestionFormGroup);
     var newPollLabel = $("<label for='pollQuestion'>Enter Your Question:</label>").appendTo(newPollQuestionFormGroup);
     var newPollQuestion = $("<input type='text' class='form-control' id='pollQuestion'> </div>").appendTo(newPollQuestionFormGroup);
     var newMultipleChoicePollTypeLabel = $("<div class='row text-center'> <label></label> </div>").appendTo(newPollQuestionFormGroup);
-    var newChoiceColumn = $("<div class='col-md-4 choices-column'>").appendTo(newPollQuestionFormGroup);
-    var newPollChoice1= $("<label>Option 1:</label> <input type='text' class='form-control pollChoice' id='pollChoice1'> </div>").appendTo(newChoiceColumn);
-    var newPollChoice2 = $("<label>Option 2:</label>  <input type='text' class='form-control pollChoice' id='pollChoice2'> </div>").appendTo(newChoiceColumn);
-    var newPollChoice3 = $("<label>Option 3:</label>  <input type='text' class='form-control pollChoice' id='pollChoice3'> </div>").appendTo(newChoiceColumn);
-    var newPollChoice4 = $("<label>Option 4:</label>  <input type='text' class='form-control pollChoice' id='pollChoice4'> </div>").appendTo(newChoiceColumn);
+    var newChoiceColumn = $("<div class='col-md-7 choices-column'>").appendTo(newPollQuestionFormGroup)
+    var newPollChoice1= $("<input type='text' placeholder='Option One' class='form pollChoice' id='pollChoice1'>").appendTo(newChoiceColumn);
+    var newPollChoice2 = $("<input type='text' placeholder='Option Two' class='form pollChoice' id='pollChoice2'>").appendTo(newChoiceColumn);
+    var newPollChoice3 = $("<input type='text' placeholder='Option Three' class='form pollChoice' id='pollChoice3'> <button class='red-button-inline deleteOption' id='deleteOption3'> Delete </button>").appendTo(newChoiceColumn);
+    var newPollChoice4 = $("<input type='text' placeholder='Option Four' class='form pollChoice' id='pollChoice4'> <button class='red-button-inline deleteOption' id='deleteOption4'> Delete </button>").appendTo(newChoiceColumn);
     var newRow = $("<div class='row'>").appendTo(newPollQuestionFormGroup);
 
   } else if(pollType =='points') {
@@ -253,6 +243,23 @@ var newPollSubmitButton = $("<input type='button' class='btn btn-primary' id='su
 
   //Append the poll to main content area
   $("#mainContent").append(newPollForm);
+
+  // every time the button is clicked, the whole page is refreshed and teh div containing all
+  // inputs dissapears
+  $("#deleteOption3").on("click", function() {
+    console.log("clicked 3");
+    $("#pollChoice3").hide();
+    $("#deleteOption3").hide();
+    return false;
+  });
+
+  $("#deleteOption4").on("click", function() {
+    console.log("clicked 4");
+    $("#pollChoice4").hide();
+    $("#deleteOption4").hide();
+    return false;
+  });
+
 };
 
 // on load its gunna hide the other div and show the corrisponding div
@@ -279,7 +286,9 @@ $("#mainContent").on("click", "#submitbutton", function() {
   if (validatePollSubmit()) {
           api.createNewPoll();
 }
-})
+});
+
+
 
 $("#modalCloseButton").on("click",function() {
   console.log('Modal Close Button!!');
