@@ -282,8 +282,7 @@ var newPollSubmitButton = $("<input type='button' class='btn btn-primary' id='su
   //Append the poll to main content area
   $("#mainContent").append(newPollForm);
 
-  // every time the button is clicked, the whole page is refreshed and teh div containing all
-  // inputs dissapears
+
   $("#deleteOption3").on("click", function() {
     console.log("clicked 3");
     $("#pollChoice3").hide();
@@ -470,8 +469,14 @@ createNewPoll: function() {
         var options= {}
         options['option1'] = $('#pollChoice1').val();
         options['option2'] = $('#pollChoice2').val();
-        options['option3'] = $('#pollChoice3').val();
-        options['option4'] = $('#pollChoice4').val();
+        if($('#pollChoice3').val().length > 0)
+        {
+            options['option3'] = $('#pollChoice3').val();
+        }
+        if($('#pollChoice4').val().length > 0) {
+            options['option4'] = $('#pollChoice4').val();
+        }
+
         newPollData['optionCreated'] = options;
         console.log(newPollData)
         break;

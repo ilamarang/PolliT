@@ -21,8 +21,12 @@
             <select class="form-control" id="pollSelection">
             <option>{{options.option1}}</option>
             <option>{{options.option2}}</option>
+            {{#if options.option3}}
             <option>{{options.option3}}</option>
+            {{/if }}
+            {{#if options.option4}}
             <option>{{options.option4}}</option>
+            {{/if }}
             </select>
             {{/isTemplateTwo  }}
 
