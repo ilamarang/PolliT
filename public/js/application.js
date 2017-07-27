@@ -97,6 +97,7 @@ $(document).ready(function(){
   api.getPollHistory();
   $('.profileContent').hide();
   $('.pollHistoryContent').hide();
+  $('.searchContent').hide();
 });
 
 
@@ -107,6 +108,7 @@ $("#submitPollButton").on("click",function() {
 
 $("#mainContent").on("click", "#submitbutton", function() {
   if (validatePollSubmit()) {
+
           api.createNewPoll();
 }
 });
@@ -138,7 +140,7 @@ $("#charDisplaySection").on("click", function() {
 });
 
 $("#showProfile").on("click", function() {
-
+  $('.searchContent').hide();
   pollHistory.showProfileContent();
 
 });
@@ -148,3 +150,18 @@ $("#getPoll").on("click", function() {
   api.getAllPolls();
 
 });
+
+$(".pollSearchButton").on("click",function() {
+  console.log($('#pollTextSearch').val());
+  console.log($('#pollTypeOption option:selected').text());
+  console.log($('#pollOrderOption option:selected').text());
+
+  api.searchPoll();
+  $('#filterResultsDropDown').dropdown("toggle");
+
+})
+
+$("#searchPolls").on("click",function() {
+  $('.searchContent').show();
+
+})

@@ -34,13 +34,46 @@ module.exports = {
 
 },
 
-drawChart: function(resultData,location) {
+renderSearchChart: function(data,caller) {
+
+//Group result Arrays by Poll ID
+var groupPollArray = []
+var tempArray = []
+console.log(data);
+
+data.forEach(function(value,index) {
+  if(index === 0) {
+    tempArray.push(value)
+  }
+
+ else if(value.PollId == data[index-1].PollId) {
+    tempArray.push(value)
+  } else {
+    groupPollArray.push([].concat(tempArray));
+    tempArray.length=0;
+    tempArray.push(value);
+  }
+})
+groupPollArray.push([].concat(tempArray));
+$('#charDisplaySection').empty();
+for(var locationCounter=0;locationCounter < groupPollArray.length;locationCounter++)
+{
+   var newChartColumnId = "chartItemDisplay" + locationCounter
+   var newChartColumn = $("<div class='col-md-6 dynamicChart chart-panel'> " ).attr("id",newChartColumnId).appendTo("#charDisplaySection")
+   google.charts.setOnLoadCallback(module.exports.drawChart(groupPollArray[locationCounter],newChartColumnId,caller));
+}
+
+},
+
+drawChart: function(resultData,location,caller) {
+
   if(resultData.length > 0)
   {
 
   var chartArray = [['Task', 'Hours per Day']]
 
   resultData.forEach(function(value,index){
+
     var tempData = [];
     tempData.push(value.optionSelected);
     tempData.push(value.count)
@@ -48,14 +81,18 @@ drawChart: function(resultData,location) {
     chartArray.push(tempData);
 
   })
-
+  if(caller === 'searchResults') {
+    var titleToDisplay = resultData[0]['Poll.title'];
+  } else {
+    var titleToDisplay = resultData[0].Poll.title;
+  }
         var data = google.visualization.arrayToDataTable(chartArray);
         var options = {
         	backgroundColor: "#E8E8E8",
         	sliceVisibilityThreshold: .2,
         	fontSize: 14,
           fontColor: "#333333",
-          title: resultData[0].Poll.title
+          title: titleToDisplay
 
         };
         var chart = new google.visualization.PieChart(document.getElementById(location));
@@ -88,6 +125,7 @@ showProfileContent : function() {
       $('.profileContent').show();
       $('.chartContent').hide();
       $('.pollHistoryContent').hide();
+
   }
 
 
