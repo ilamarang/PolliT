@@ -71,15 +71,15 @@ var newPollSubmitButton = $("<input type='button' class='btn btn-primary' id='su
 
   $("#deleteOption3").on("click", function() {
     console.log("clicked 3");
-    $("#pollChoice3").hide();
-    $("#deleteOption3").hide();
+    $("#pollChoice3").delete();
+    $("#deleteOption3").delete();
     return false;
   });
 
   $("#deleteOption4").on("click", function() {
     console.log("clicked 4");
-    $("#pollChoice4").hide();
-    $("#deleteOption4").hide();
+    $("#pollChoice4").delete();
+    $("#deleteOption4").delete();
     return false;
   });
 
@@ -132,6 +132,11 @@ $(".pollHistoryContent").on("click",".deactivateButton",function() {
 
 })
 
+$(".pollHistoryContent").on("click",".seeMoreButton", function() {
+  console.log("clicked");
+  // $('#pollLink').text(window.location.protocol + "//" + window.location.host + '/submitPoll/' + data.UserId + '/' + data.uuid);
+  $('#pollResultOpener').modal('show');
+});
 
 $("#charDisplaySection").on("click", function() {
 

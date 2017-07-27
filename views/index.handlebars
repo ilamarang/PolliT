@@ -276,9 +276,10 @@
              <table class="table">
                 <thead>
                    <tr>
-                      <th>Poll Title</th>
-                      <th>Last Updated Date</th>
-                      <th>Deactivate</th>
+                      <th> Poll Title </th>
+                      <th> Last Updated Date </th>
+                      <th> Deactivate </th>
+                      <th> See More </th>
                    </tr>
                 </thead>
                 <tbody id = "pollHistoryTableBody">
@@ -307,6 +308,7 @@
       {{!-- {{ END mainContent }} --}}
    </div>
 </div>
+
 <!-- Modal for when the logged in user commits a poll -->
 <div class="modal fade" id="pollResult" role="dialog">
    <div class="modal-dialog">
@@ -334,6 +336,31 @@
    {{!-- {{ END modal-dialog }} --}}
 </div>
 {{!-- {{ END modal fade }} --}}
+
+<!-- Modal for when the logged in user looks at a poll later-->
+<div class="modal fade" id="pollResultOpener" role="dialog">
+   <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <h3 class="modal-title">Your Poll Link!</h3>
+         </div>
+         {{!-- {{ END modal-header }} --}}
+         <div class="container-fluid">
+            <h6 class="poll-link" id='pollLink'></h6>
+         </div>
+         {{!-- {{ END container-fluid }} --}}
+         <div class="modal-footer">
+            <button type="button" class="red-button" id="modalCloseButton" data-dismiss="modal">Close</button>
+         </div>
+         {{!-- {{ END modal-footer }} --}}
+      </div>
+      {{!-- {{ END modal-content }} --}}
+   </div>
+   {{!-- {{ END modal-dialog }} --}}
+</div>
+{{!-- {{ END modal fade }} --}}
+
 <!-- Modal for when the non logged in user answers a poll -->
 <div class="modal fade" id="singlePollResult" role="dialog">
    <div class="modal-dialog">
