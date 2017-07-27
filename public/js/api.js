@@ -82,6 +82,33 @@ $.get('/services/getAllPolls/' + pollUserId).done(function(data){
 pollHistory.renderAllPolls(data);
 })
 
+},
+
+searchPoll: function() {
+  console.log('Search Poll');
+  var searchPollData = { };
+  searchPollData['uuid'] = $("#submitPollForm").data("uuid");
+  searchPollData['pollSearchTitle'] = $('#pollTextSearch').val();
+  if($('#pollTypeOption option:selected').val() === '0') {
+    searchPollData['pollSearchType'] = '';
+  }
+   else {
+     searchPollData['pollSearchType'] = $('#pollTypeOption option:selected').val();
+   }
+
+
+  $.ajax ({
+    url: '/services/searchPoll',
+    type: "POST",
+    data: JSON.stringify(searchPollData),
+    dataType: "json",
+    contentType: "application/json; charset=utf-8",
+    success: function(data){
+      console.log('Render chart !! ' + data);
+      pollHistory.renderSearchChart(data,'searchResults');
+
+  }
+})
 }
 
 }

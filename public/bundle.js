@@ -103,13 +103,46 @@ module.exports = {
 
 },
 
-drawChart: function(resultData,location) {
+renderSearchChart: function(data,caller) {
+
+//Group result Arrays by Poll ID
+var groupPollArray = []
+var tempArray = []
+console.log(data);
+
+data.forEach(function(value,index) {
+  if(index === 0) {
+    tempArray.push(value)
+  }
+
+ else if(value.PollId == data[index-1].PollId) {
+    tempArray.push(value)
+  } else {
+    groupPollArray.push([].concat(tempArray));
+    tempArray.length=0;
+    tempArray.push(value);
+  }
+})
+groupPollArray.push([].concat(tempArray));
+$('#charDisplaySection').empty();
+for(var locationCounter=0;locationCounter < groupPollArray.length;locationCounter++)
+{
+   var newChartColumnId = "chartItemDisplay" + locationCounter
+   var newChartColumn = $("<div class='col-md-6 dynamicChart chart-panel'> " ).attr("id",newChartColumnId).appendTo("#charDisplaySection")
+   google.charts.setOnLoadCallback(module.exports.drawChart(groupPollArray[locationCounter],newChartColumnId,caller));
+}
+
+},
+
+drawChart: function(resultData,location,caller) {
+
   if(resultData.length > 0)
   {
 
   var chartArray = [['Task', 'Hours per Day']]
 
   resultData.forEach(function(value,index){
+
     var tempData = [];
     tempData.push(value.optionSelected);
     tempData.push(value.count)
@@ -117,14 +150,18 @@ drawChart: function(resultData,location) {
     chartArray.push(tempData);
 
   })
-
+  if(caller === 'searchResults') {
+    var titleToDisplay = resultData[0]['Poll.title'];
+  } else {
+    var titleToDisplay = resultData[0].Poll.title;
+  }
         var data = google.visualization.arrayToDataTable(chartArray);
         var options = {
         	backgroundColor: "#E8E8E8",
         	sliceVisibilityThreshold: .2,
         	fontSize: 14,
           fontColor: "#333333",
-          title: resultData[0].Poll.title
+          title: titleToDisplay
 
         };
         var chart = new google.visualization.PieChart(document.getElementById(location));
@@ -157,6 +194,7 @@ showProfileContent : function() {
       $('.profileContent').show();
       $('.chartContent').hide();
       $('.pollHistoryContent').hide();
+
   }
 
 
@@ -267,6 +305,7 @@ $(document).ready(function(){
   api.getPollHistory();
   $('.profileContent').hide();
   $('.pollHistoryContent').hide();
+  $('.searchContent').hide();
 });
 
 
@@ -277,6 +316,7 @@ $("#submitPollButton").on("click",function() {
 
 $("#mainContent").on("click", "#submitbutton", function() {
   if (validatePollSubmit()) {
+
           api.createNewPoll();
 }
 })
@@ -306,7 +346,7 @@ $("#charDisplaySection").on("click", function() {
 });
 
 $("#showProfile").on("click", function() {
-
+  $('.searchContent').hide();
   pollHistory.showProfileContent();
 
 });
@@ -316,6 +356,21 @@ $("#getPoll").on("click", function() {
   api.getAllPolls();
 
 });
+
+$(".pollSearchButton").on("click",function() {
+  console.log($('#pollTextSearch').val());
+  console.log($('#pollTypeOption option:selected').text());
+  console.log($('#pollOrderOption option:selected').text());
+
+  api.searchPoll();
+  $('#filterResultsDropDown').dropdown("toggle");
+
+})
+
+$("#searchPolls").on("click",function() {
+  $('.searchContent').show();
+
+})
 
 
 /***/ }),
@@ -457,6 +512,33 @@ $.get('/services/getAllPolls/' + pollUserId).done(function(data){
 pollHistory.renderAllPolls(data);
 })
 
+},
+
+searchPoll: function() {
+  console.log('Search Poll');
+  var searchPollData = { };
+  searchPollData['uuid'] = $("#submitPollForm").data("uuid");
+  searchPollData['pollSearchTitle'] = $('#pollTextSearch').val();
+  if($('#pollTypeOption option:selected').val() === '0') {
+    searchPollData['pollSearchType'] = '';
+  }
+   else {
+     searchPollData['pollSearchType'] = $('#pollTypeOption option:selected').val();
+   }
+
+
+  $.ajax ({
+    url: '/services/searchPoll',
+    type: "POST",
+    data: JSON.stringify(searchPollData),
+    dataType: "json",
+    contentType: "application/json; charset=utf-8",
+    success: function(data){
+      console.log('Render chart !! ' + data);
+      pollHistory.renderSearchChart(data,'searchResults');
+
+  }
+})
 }
 
 }
