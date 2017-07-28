@@ -57,9 +57,10 @@ module.exports = {
   $('#charDisplaySection').empty();
   for(var locationCounter=0;locationCounter < groupPollArray.length;locationCounter++)
   {
-     var newChartColumnId = "chartItemDisplay" + locationCounter
-     var newChartColumn = $("<div class='col-md-6 dynamicChart chart-panel'> " ).attr("id",newChartColumnId).appendTo("#charDisplaySection")
+     var newChartColumnId = "chartItemDisplay" + locationCounter;
+     var newChartColumn = $("<div class='col-md-6 dynamicChart chart-panel'> " ).attr("id",newChartColumnId).appendTo("#charDisplaySection");
      google.charts.setOnLoadCallback(module.exports.drawChart(groupPollArray[locationCounter],newChartColumnId,caller));
+     
   }
 
   },
@@ -85,18 +86,22 @@ module.exports = {
     } else {
       var titleToDisplay = resultData[0].Poll.title;
     }
-          var data = google.visualization.arrayToDataTable(chartArray);
-          var options = {
-          	backgroundColor: "#E8E8E8",
-          	sliceVisibilityThreshold: .2,
-          	fontSize: 14,
-            fontColor: "#333333",
-            title: titleToDisplay
+      var data = google.visualization.arrayToDataTable(chartArray);
 
-          };
-          var chart = new google.visualization.PieChart(document.getElementById(location));
-          chart.draw(data, options);
-   }
+      if(data.empty()) {
+        $("<h2> Sorry, no one has responded yet. Share this poll around!</h2>");
+      } else {
+        var options = {
+        backgroundColor: "#E8E8E8",
+        sliceVisibilityThreshold: .2,
+        fontSize: 14,
+        fontColor: "#333333",
+        title: titleToDisplay
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById(location));
+      chart.draw(data, options);
+      }
    else {
       module.exports.showProfileContent();
    }
