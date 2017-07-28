@@ -65,9 +65,141 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module parse failed: /Users/Blanco/Desktop/pollit/PolliT/public/js/pollHistory.js Unexpected token (105:3)\nYou may need an appropriate loader to handle this file type.\n|       chart.draw(data, options);\n|       }\n|    else {\n|       module.exports.showProfileContent();\n|    }");
+
+var dbdataConvert = __webpack_require__(3);
+module.exports = {
+
+  renderChart: function(dbdata) {
+    //Group result Arrays by Poll ID
+    var groupPollArray = []
+    //var tempArray = []
+    //console.log(data);
+
+    dbdata.forEach(function(value,index) {
+    /*  if(index === 0) {
+        tempArray.push(value)
+      }
+
+     else if(value.PollId == data[index-1].PollId) {
+        tempArray.push(value)
+      } else {
+        groupPollArray.push([].concat(tempArray));
+        tempArray.length=0;
+        tempArray.push(value);
+      }
+    })*/
+    //groupPollArray.push([].concat(tempArray));
+      groupPollArray.push(dbdataConvert.convert(value));
+    });
+
+    for(var locationCounter=0;locationCounter < groupPollArray.length;locationCounter++)
+    {
+       var newChartColumnId = "chartItemDisplay" + locationCounter
+       var newChartColumn = $("<div class='col-md-6 dynamicChart chart-panel'> " ).attr("id",newChartColumnId).appendTo("#charDisplaySection")
+       google.charts.setOnLoadCallback(module.exports.drawChart(groupPollArray[locationCounter],newChartColumnId));
+    }
+
+ },
+  renderSearchChart: function(data,caller) {
+
+  //Group result Arrays by Poll ID
+  var groupPollArray = []
+  var tempArray = []
+  console.log(data);
+
+  data.forEach(function(value,index) {
+    if(index === 0) {
+      tempArray.push(value)
+    }
+
+   else if(value.PollId == data[index-1].PollId) {
+      tempArray.push(value)
+    } else {
+      groupPollArray.push([].concat(tempArray));
+      tempArray.length=0;
+      tempArray.push(value);
+    }
+  })
+  groupPollArray.push([].concat(tempArray));
+  $('#charDisplaySection').empty();
+  for(var locationCounter=0;locationCounter < groupPollArray.length;locationCounter++)
+  {
+     var newChartColumnId = "chartItemDisplay" + locationCounter
+     var newChartColumn = $("<div class='col-md-6 dynamicChart chart-panel'> " ).attr("id",newChartColumnId).appendTo("#charDisplaySection")
+     google.charts.setOnLoadCallback(module.exports.drawChart(groupPollArray[locationCounter],newChartColumnId,caller));
+  }
+
+  },
+
+  drawChart: function(resultData,location,caller) {
+
+    if(resultData.length > 0)
+    {
+
+    var chartArray = [['Task', 'Hours per Day']]
+
+    resultData.forEach(function(value,index){
+
+      var tempData = [];
+      tempData.push(value.optionSelected);
+      tempData.push(value.count)
+
+      chartArray.push(tempData);
+
+    })
+    if(caller === 'searchResults') {
+      var titleToDisplay = resultData[0]['Poll.title'];
+    } else {
+      var titleToDisplay = resultData[0].Poll.title;
+    }
+          var data = google.visualization.arrayToDataTable(chartArray);
+          var options = {
+          	backgroundColor: "#E8E8E8",
+          	sliceVisibilityThreshold: .2,
+          	fontSize: 14,
+            fontColor: "#333333",
+            title: titleToDisplay
+
+          };
+          var chart = new google.visualization.PieChart(document.getElementById(location));
+          chart.draw(data, options);
+   }
+   else {
+      module.exports.showProfileContent();
+   }
+  },
+
+  renderAllPolls: function(data) {
+    console.log(data);
+  $('.chartContent').hide();
+  $('.profileContent').hide();
+  $('.pollHistoryContent').show();
+
+      $(".table > tbody").html("");
+
+      data.forEach(function(value,index){
+          if(value.isActive) {
+              $('<tr><td>' + value.title + '</td> <td>' +value.updatedAt.substring(0,10)+'</td><td> <button class="deactivateButton red-button-inline" data-uuid=' + value.uuid + '> Deactivate Poll </button> </td> <td> <button class="seeMoreButton red-button-inline" data-uuid=' + value.uuid + '> See More </button> </td></tr>' ).appendTo('#pollHistoryTableBody');
+          } else {
+            $('<tr><td>' + value.title + '</td> <td>' +value.updatedAt.substring(0,10)+'</td><td> <button disabled class="deactivateButton red-button-inline" data-uuid=' + value.uuid + '> Deactivated </button> </td> <td> <button class="seeMoreButton red-button-inline" data-uuid=' + value.uuid + '> See More </button> </td><tr>' ).appendTo('#pollHistoryTableBody');
+          }
+
+      })
+
+  },
+  showProfileContent : function() {
+        $('.profileContent').show();
+        $('.chartContent').hide();
+        $('.pollHistoryContent').hide();
+
+    }
+
+
+  }
+
+
 
 /***/ }),
 /* 1 */
@@ -81,7 +213,7 @@ module.exports = __webpack_require__(2);
 /***/ (function(module, exports, __webpack_require__) {
 
 var pollHistory = __webpack_require__(0)
-var api= __webpack_require__(3)
+var api= __webpack_require__(4)
 
 google.charts.load('current', {'packages':['corechart']});
 
@@ -256,6 +388,57 @@ $("#searchPolls").on("click",function() {
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports) {
+
+module.exports = {
+  convert: function(dbPollInfo){
+    if(dbPollInfo.PollTypeId === 1){
+      var optionAry = [["Yes",0],["No",0]];
+      return getMultiOpsPollResult(optionAry, dbPollInfo);
+    } else if(dbPollInfo.PollTypeId === 2){
+      var options = JSON.parse(dbPollInfo.options);
+      var optionAry = [];
+      for(var i in options)
+        optionAry.push([options[i], 0]);
+      return getMultiOpsPollResult(optionAry, dbPollInfo);
+    } else {
+      var optionAry = [['1',0],['2',0],['3',0],['4',0],['5',0]];
+      return getMultiOpsPollResult(optionAry, dbPollInfo);
+    }
+    console.log(data);
+    return data;
+  }
+}
+
+function getMultiOpsPollResult(options, dbPoll){
+    var opsMap = new Map(options);
+    for(var j = 0; j < dbPoll.PollResults.length; j++){
+      var dbPollSelection = (dbPoll.PollResults)[j];
+      var cnt = opsMap.get(dbPollSelection.optionSelected+'')+1;
+      opsMap.set(dbPollSelection.optionSelected+'', cnt);
+    }
+
+    var data = [];
+    for(var key of opsMap.keys()){
+      var optionInfo = {
+        Poll:{
+          PollTypeId: dbPoll.PollTypeId,
+          title: dbPoll.title
+        },
+        PollId: dbPoll.id,
+        count: opsMap.get(key),
+        optionSelected: key
+      };
+      console.log(optionInfo);
+      data.push(optionInfo);
+    }
+    return data;
+}
+
+
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pollHistory = __webpack_require__(0)
