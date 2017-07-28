@@ -65,7 +65,8 @@ module.exports = {
   },
 
   drawChart: function(resultData,location,caller) {
-
+    console.log(resultData);
+    var numberOfPeopleVoted = 0
     if(resultData.length > 0)
     {
 
@@ -76,10 +77,13 @@ module.exports = {
       var tempData = [];
       tempData.push(value.optionSelected);
       tempData.push(value.count)
-
+      numberOfPeopleVoted += value.count;
       chartArray.push(tempData);
 
     })
+
+     $('#' + location).attr('data-voted', numberOfPeopleVoted);
+
     if(caller === 'searchResults') {
       var titleToDisplay = resultData[0]['Poll.title'];
     } else {
@@ -129,4 +133,3 @@ module.exports = {
 
 
   }
-

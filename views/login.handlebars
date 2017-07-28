@@ -1,15 +1,24 @@
 {{!-- {{ The section where the poll creating user logs in }} --}}
 
-<h2 class="page-header body-header">Account Login</h2>
+<h2 class="body-header">Account Login</h2>
+<div class="marquee marquee-bgimg">
+  <div class="marquee__image--homepage marquee__image" style="background-image:url('/images/thinking.jpg');"></div>
+  <div class = "row">
+    <div class="col-md-6 col-md-3-offset">
+
 <form class="login-form" method="post" action="/users/login">
   <div class="form-group">
-    <label>Username</label>
+    <label class="pull-left">Username</label>
     <input type="text" class="form-control" name="username" placeholder="Username">
   </div>
   <div class="form-group">
-    <label>Password</label>
+    <label class="pull-left">Password</label>
     <input type="password" class="form-control" name="password" placeholder="Password">
   </div>
   <button type="submit" class="red-button" >Submit </button>
 </form>
+</div>
+  </div>
+</div>
+</div>
 <div class="container spacer-container"></div>

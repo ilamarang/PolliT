@@ -138,10 +138,11 @@ $(".pollHistoryContent").on("click",".seeMoreButton", function() {
   $('#pollResultOpener').modal('show');
 });
 
-$("#charDisplaySection").on("click", function() {
+$("#charDisplaySection").on("click", ".dynamicChart", function() {
+  console.log($(this).data('voted'));
 
   $("#singlePollResult").modal('show');
-
+  $('#singlePollResultText').text('This Poll has received ' + $(this).data('voted') + ' votes!')
 });
 
 $("#showProfile").on("click", function() {

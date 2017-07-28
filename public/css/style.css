@@ -26,6 +26,30 @@ body {
 
 }
 
+#submitButton {
+  color:#f0f0f0;
+}
+
+
+
+
+.marquee {
+    min-height: 35em;
+    background-color: #f0f0f0;
+    position: relative;
+    text-align: center;
+    background-image  : url(/images/thinking.jpg);
+
+}
+
+.marquee--bgimg .marquee__image {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    min-height: 26em;
+    text-align: center;
+
+}
 
 /* Nav section */
 
