@@ -215,8 +215,8 @@ var newPollSubmitButton = $("<input type='button' class='btn btn-primary' id='su
     var newChoiceColumn = $("<div class='col-md-7 choices-column'>").appendTo(newPollQuestionFormGroup)
     var newPollChoice1= $("<input type='text' placeholder='Option One' class='form pollChoice' id='pollChoice1'>").appendTo(newChoiceColumn);
     var newPollChoice2 = $("<input type='text' placeholder='Option Two' class='form pollChoice' id='pollChoice2'>").appendTo(newChoiceColumn);
-    var newPollChoice3 = $("<input type='text' placeholder='Option Three' class='form pollChoice' id='pollChoice3'> <button class='red-button-inline deleteOption' id='deleteOption3'> Delete </button>").appendTo(newChoiceColumn);
-    var newPollChoice4 = $("<input type='text' placeholder='Option Four' class='form pollChoice' id='pollChoice4'> <button class='red-button-inline deleteOption' id='deleteOption4'> Delete </button>").appendTo(newChoiceColumn);
+    var newPollChoice3 = $("<input type='text' placeholder='Option Three' class='form pollChoice' id='pollChoice3'> <input type='button' class='red-button-inline deleteOption' id='deleteOption3' value='Delete'></input>").appendTo(newChoiceColumn);
+    var newPollChoice4 = $("<input type='text' placeholder='Option Four' class='form pollChoice' id='pollChoice4'> <input type='button' class='red-button-inline deleteOption' id='deleteOption4' value='Delete'> </input>").appendTo(newChoiceColumn);
     var newRow = $("<div class='row'>").appendTo(newPollQuestionFormGroup);
 
   } else if(pollType =='points') {
@@ -250,15 +250,15 @@ var newPollSubmitButton = $("<input type='button' class='btn btn-primary' id='su
 
   $("#deleteOption3").on("click", function() {
     console.log("clicked 3");
-    $("#pollChoice3").delete();
-    $("#deleteOption3").delete();
+    $("#pollChoice3").hide();
+    $("#deleteOption3").hide();
     return false;
   });
 
   $("#deleteOption4").on("click", function() {
     console.log("clicked 4");
-    $("#pollChoice4").delete();
-    $("#deleteOption4").delete();
+    $("#pollChoice4").hide();
+    $("#deleteOption4").hide();
     return false;
   });
 
