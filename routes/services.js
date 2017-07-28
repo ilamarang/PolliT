@@ -58,7 +58,9 @@ router.get('/getAllPolls/:userId' , function(req,res) {
 	console.log(req.params.userId)
 	var userIdentifier = parseInt(req.params.userId);
 	db.Poll.findAll({
-
+		where: {
+		UserId: req.params.userId
+	}
 	}).then(function(data) {
 		res.json(data);
 	});
