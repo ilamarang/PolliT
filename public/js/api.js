@@ -104,14 +104,14 @@ searchPoll: function() {
 
 
   $.ajax ({
-    url: '/services/searchPoll',
+    url: '/services/searchPollData',
     type: "POST",
     data: JSON.stringify(searchPollData),
     dataType: "json",
     contentType: "application/json; charset=utf-8",
     success: function(data){
       console.log('Render chart !! ' + data);
-      pollHistory.renderSearchChart(data,'searchResults');
+      pollHistory.renderChart(data,'search');
 
   }
 })

@@ -81,23 +81,21 @@ router.post('/deactivatePoll',function(req, res){
 });
 
 
-router.post('/searchPoll',function(req, res){
-	console.log(req.body)
+router.post('/searchPollData',function(req, res){
+console.log(req.body)
+var searchTitle = req.body.pollSearchTitle ? 'LOWER(Poll.title) LIKE ' + "'%" + req.body.pollSearchTitle + "%'" : 'LOWER(Poll.title) LIKE ' + "'%'";
+var searchPollType = req.body.pollSearchType ? 'PollTypeID = ' + parseInt(req.body.pollSearchType) : 'PollTypeID IN (1,2,3) '
+var searchUserId = 'UserId = ' + req.user.id
+var whereCondition = searchTitle + ' AND ' + searchPollType + ' AND ' +  searchUserId;
+console.log([searchTitle,searchPollType])
 
-	var searchTitle = req.body.pollSearchTitle ? 'LOWER(Poll.title) LIKE ' + "'%" + req.body.pollSearchTitle + "%'" : 'LOWER(Poll.title) LIKE ' + "'%'";
-	var searchPollType = req.body.pollSearchType ? 'PollTypeID = ' + parseInt(req.body.pollSearchType) : 'PollTypeID IN (1,2,3) '
-	var whereCondition = searchTitle + ' AND ' + searchPollType;
-	console.log([searchTitle,searchPollType])
-	db.PollResult.findAll({
-		attributes:['PollId','optionSelected',[sequelize.fn('count', sequelize.col('optionSelected')), 'count']],
-		include: [{model: db.Poll,required: true,where:{userId:req.user.id},attributes:['title','PollTypeId']}],
-		group: ['PollId','optionSelected'],
-		order:['PollId'],
-		where: sequelize.and([whereCondition]),
-		raw: true
-	}).then(function(data){
-		res.json(data);
-	})
+db.Poll.findAll({
+include: [db.PollResult],
+where: sequelize.and([whereCondition])
+}).then(function(dbPolls) {
+	res.json(dbPolls);
 });
+
+})
 
 module.exports = router;

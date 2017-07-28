@@ -71,27 +71,19 @@
 var dbdataConvert = __webpack_require__(3);
 module.exports = {
 
-  renderChart: function(dbdata) {
+  renderChart: function(dbdata,caller) {
+    $('#charDisplaySection').empty();
     //Group result Arrays by Poll ID
     var groupPollArray = []
-    //var tempArray = []
-    //console.log(data);
-
+    console.log('Data Length: ' + dbdata.length);
+    if(dbdata.length == 0 && caller == 'search')
+    {
+      $("#singlePollResult").modal('show');
+      $('#singlePollResultText').text('This search has yielded no results!');
+      return;
+    }
     dbdata.forEach(function(value,index) {
-    /*  if(index === 0) {
-        tempArray.push(value)
-      }
-
-     else if(value.PollId == data[index-1].PollId) {
-        tempArray.push(value)
-      } else {
-        groupPollArray.push([].concat(tempArray));
-        tempArray.length=0;
-        tempArray.push(value);
-      }
-    })*/
-    //groupPollArray.push([].concat(tempArray));
-      groupPollArray.push(dbdataConvert.convert(value));
+    groupPollArray.push(dbdataConvert.convert(value));
     });
 
     for(var locationCounter=0;locationCounter < groupPollArray.length;locationCounter++)
@@ -100,38 +92,8 @@ module.exports = {
        var newChartColumn = $("<div class='col-md-6 dynamicChart chart-panel'> " ).attr("id",newChartColumnId).appendTo("#charDisplaySection")
        google.charts.setOnLoadCallback(module.exports.drawChart(groupPollArray[locationCounter],newChartColumnId));
     }
-
- },
-  renderSearchChart: function(data,caller) {
-
-  //Group result Arrays by Poll ID
-  var groupPollArray = []
-  var tempArray = []
-  console.log(data);
-
-  data.forEach(function(value,index) {
-    if(index === 0) {
-      tempArray.push(value)
-    }
-
-   else if(value.PollId == data[index-1].PollId) {
-      tempArray.push(value)
-    } else {
-      groupPollArray.push([].concat(tempArray));
-      tempArray.length=0;
-      tempArray.push(value);
-    }
-  })
-  groupPollArray.push([].concat(tempArray));
-  $('#charDisplaySection').empty();
-  for(var locationCounter=0;locationCounter < groupPollArray.length;locationCounter++)
-  {
-     var newChartColumnId = "chartItemDisplay" + locationCounter
-     var newChartColumn = $("<div class='col-md-6 dynamicChart chart-panel'> " ).attr("id",newChartColumnId).appendTo("#charDisplaySection")
-     google.charts.setOnLoadCallback(module.exports.drawChart(groupPollArray[locationCounter],newChartColumnId,caller));
   }
-
-  },
+ ,
 
   drawChart: function(resultData,location,caller) {
     console.log(resultData);
@@ -171,7 +133,7 @@ module.exports = {
           chart.draw(data, options);
    }
    else {
-      module.exports.showProfileContent();
+    //  module.exports.showProfileContent();
    }
   },
 
@@ -314,7 +276,7 @@ $(document).ready(function(){
   api.getPollHistory();
   $('.profileContent').hide();
   $('.pollHistoryContent').hide();
-  $('.searchContent').hide();
+
 });
 
 
@@ -385,8 +347,9 @@ $(".pollSearchButton").on("click",function() {
 })
 
 $("#searchPolls").on("click",function() {
+  $('.profileContent').hide();
   $('.searchContent').show();
-
+  $('#charDisplaySection').empty();
 })
 
 
@@ -551,14 +514,14 @@ searchPoll: function() {
 
 
   $.ajax ({
-    url: '/services/searchPoll',
+    url: '/services/searchPollData',
     type: "POST",
     data: JSON.stringify(searchPollData),
     dataType: "json",
     contentType: "application/json; charset=utf-8",
     success: function(data){
       console.log('Render chart !! ' + data);
-      pollHistory.renderSearchChart(data,'searchResults');
+      pollHistory.renderChart(data,'search');
 
   }
 })

@@ -97,7 +97,7 @@ $(document).ready(function(){
   api.getPollHistory();
   $('.profileContent').hide();
   $('.pollHistoryContent').hide();
-  $('.searchContent').hide();
+
 });
 
 
@@ -168,6 +168,7 @@ $(".pollSearchButton").on("click",function() {
 })
 
 $("#searchPolls").on("click",function() {
+  $('.profileContent').hide();
   $('.searchContent').show();
-
+  $('#charDisplaySection').empty();
 })

@@ -30,7 +30,9 @@ body {
   color:#f0f0f0;
 }
 
-
+.modal-content {
+    color: black !important;
+}
 
 
 .marquee {
@@ -551,4 +553,7 @@ body {
   color: white;
   font-size: 1em;
   margin-top: 5px;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+    border-radius: 20px;
 }
