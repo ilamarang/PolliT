@@ -53,6 +53,11 @@ body {
 
 }
 
+.pollSearchButton {
+  background-color: #B90504 !important;
+  background-image: none !important;
+}
+
 /* Nav section */
 
 .top-nav {
