@@ -38,6 +38,10 @@ createNewPoll: function() {
         if($('#pollChoice4').val().length > 0) {
             options['option4'] = $('#pollChoice4').val();
         }
+        options['option5'] = $('#pollChoice5').val();
+        options['option6'] = $('#pollChoice6').val();
+        options['option7'] = $('#pollChoice7').val();
+        options['option8'] = $('#pollChoice8').val();
 
         newPollData['optionCreated'] = options;
         console.log(newPollData)

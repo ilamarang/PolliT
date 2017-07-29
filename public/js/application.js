@@ -36,8 +36,13 @@ var newPollSubmitButton = $("<input type='button' class='btn btn-primary' id='su
     var newChoiceColumn = $("<div class='col-md-7 choices-column'>").appendTo(newPollQuestionFormGroup)
     var newPollChoice1= $("<input type='text' placeholder='Option One' class='form pollChoice' id='pollChoice1'>").appendTo(newChoiceColumn);
     var newPollChoice2 = $("<input type='text' placeholder='Option Two' class='form pollChoice' id='pollChoice2'>").appendTo(newChoiceColumn);
-    var newPollChoice3 = $("<input type='text' placeholder='Option Three' class='form pollChoice' id='pollChoice3'> <input type='button' class='red-button-inline deleteOption' id='deleteOption3' value='Delete'></input>").appendTo(newChoiceColumn);
-    var newPollChoice4 = $("<input type='text' placeholder='Option Four' class='form pollChoice' id='pollChoice4'> <input type='button' class='red-button-inline deleteOption' id='deleteOption4' value='Delete'> </input>").appendTo(newChoiceColumn);
+    var newPollChoice3 = $("<input type='text' placeholder='Option Three' class='form pollChoice' id='pollChoice3'>").appendTo(newChoiceColumn);
+    var newPollChoice4 = $("<input type='text' placeholder='Option Four' class='form pollChoice' id='pollChoice4'>").appendTo(newChoiceColumn);
+    var newPollChoice5= $("<input type='text' placeholder='Option Five' class='form pollChoice' id='pollChoice5'>").appendTo(newChoiceColumn);
+    var newPollChoice6 = $("<input type='text' placeholder='Option Six' class='form pollChoice' id='pollChoice6'>").appendTo(newChoiceColumn);
+    var newPollChoice7= $("<input type='text' placeholder='Option seven' class='form pollChoice' id='pollChoice7'>").appendTo(newChoiceColumn);
+    var newPollChoice8= $("<input type='text' placeholder='Option eight' class='form pollChoice' id='pollChoice8'>").appendTo(newChoiceColumn);
+
     var newRow = $("<div class='row'>").appendTo(newPollQuestionFormGroup);
 
   } else if(pollType =='points') {
